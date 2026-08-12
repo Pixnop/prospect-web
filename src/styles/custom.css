@@ -921,3 +921,89 @@ a.card,
 :root[data-theme='light'] .pr-theme-toggle__moon {
 	display: block;
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   7. Galerie à deux thèmes et lightbox.
+   Chaque capture existe en sombre et en clair ; le CSS n'affiche que la
+   variante du thème courant (les images cachées, en lazy, ne se chargent
+   pas). Le clic ouvre le <dialog> natif : voile aux tokens, fermeture par
+   bouton, Échap ou clic sur le voile.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.pr-shot__button {
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: none;
+	background: transparent;
+	cursor: zoom-in;
+}
+.pr-shot__button:focus-visible {
+	outline: 2px solid var(--border-focus);
+	outline-offset: 2px;
+	border-radius: var(--radius-md);
+}
+/* Double classe volontaire : il faut battre la spécificité de `.pr-gallery img`
+   et `.pr-lightbox img` (classe + élément) posées plus haut. */
+.pr-shot .pr-shot__img--light,
+.pr-lightbox .pr-shot__img--light {
+	display: none;
+}
+:root[data-theme='light'] .pr-shot .pr-shot__img--dark,
+:root[data-theme='light'] .pr-lightbox .pr-shot__img--dark {
+	display: none;
+}
+:root[data-theme='light'] .pr-shot .pr-shot__img--light,
+:root[data-theme='light'] .pr-lightbox .pr-shot__img--light {
+	display: block;
+}
+
+.pr-lightbox {
+	padding: var(--space-6);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-lg);
+	background: var(--bg-surface);
+	box-shadow: var(--elev-3);
+	max-width: min(1220px, 94vw);
+}
+.pr-lightbox::backdrop {
+	background: var(--bg-scrim);
+}
+.pr-lightbox img {
+	max-width: 100%;
+	max-height: 78vh;
+	border-radius: var(--radius-sm);
+}
+.pr-lightbox__caption {
+	margin: var(--space-5) 0 0;
+	text-align: center;
+	color: var(--text-3);
+}
+.pr-lightbox__close {
+	position: absolute;
+	top: var(--space-4);
+	right: var(--space-4);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: none;
+	border-radius: var(--radius-md);
+	background: var(--bg-surface-raised);
+	color: var(--text-2);
+	cursor: pointer;
+}
+.pr-lightbox__close:hover {
+	background: var(--bg-hover);
+	color: var(--text-1);
+}
+.pr-lightbox__close:focus-visible {
+	outline: 2px solid var(--border-focus);
+	outline-offset: 2px;
+}
+.pr-lightbox__close svg {
+	width: 16px;
+	height: 16px;
+}
