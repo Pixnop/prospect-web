@@ -33,6 +33,27 @@ const alternateFr = `${alternateEn}fr/`;
 		<link rel="alternate" hreflang="fr" href={alternateFr} />
 		<link rel="alternate" hreflang="x-default" href={alternateEn} />
 		<meta name="generator" content={Astro.generator} />
+		<script is:inline>
+			// La landing suit le thème choisi dans la documentation : Starlight range son
+			// choix dans localStorage sous `starlight-theme` ('light' | 'dark' | 'auto' ou
+			// absent). Repli sur la préférence système. Script bloquant volontairement
+			// minuscule, avant tout rendu, pour éviter un éclair de mauvais thème.
+			(function () {
+				var stored;
+				try {
+					stored = localStorage.getItem('starlight-theme');
+				} catch (_) {
+					stored = null;
+				}
+				var theme =
+					stored === 'light' || stored === 'dark'
+						? stored
+						: window.matchMedia('(prefers-color-scheme: light)').matches
+							? 'light'
+							: 'dark';
+				document.documentElement.dataset.theme = theme;
+			})();
+		</script>
 	</head>
 	<body class="pr-landing">
 		<header class="pr-topbar">
