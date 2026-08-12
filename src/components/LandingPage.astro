@@ -71,6 +71,31 @@ const alternateFr = `${alternateEn}fr/`;
 					<a class="pr-topbar__lang" href={twin} rel="alternate" lang={t.lang === 'fr' ? 'en' : 'fr'}>
 						{t.twinLabel}
 					</a>
+					<button id="pr-theme-toggle" class="pr-theme-toggle" type="button" aria-label={t.nav.theme}>
+						<svg
+							class="pr-theme-toggle__sun"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.75"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"
+							><circle cx="12" cy="12" r="4" /><path
+								d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+							/></svg
+						>
+						<svg
+							class="pr-theme-toggle__moon"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.75"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" /></svg
+						>
+					</button>
 				</nav>
 			</div>
 		</header>
@@ -179,5 +204,18 @@ const alternateFr = `${alternateEn}fr/`;
 				</nav>
 			</div>
 		</footer>
+		<script is:inline>
+			// L'interrupteur de thème de la landing écrit la même clé que le sélecteur de la
+			// documentation : les deux surfaces restent d'accord, dans les deux sens.
+			document.getElementById('pr-theme-toggle').addEventListener('click', function () {
+				var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+				document.documentElement.dataset.theme = next;
+				try {
+					localStorage.setItem('starlight-theme', next);
+				} catch (_) {
+					/* stockage indisponible : le thème ne vaut que pour cette page */
+				}
+			});
+		</script>
 	</body>
 </html>

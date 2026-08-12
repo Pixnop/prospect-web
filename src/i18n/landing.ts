@@ -11,7 +11,7 @@ export interface LandingStrings {
 	twinLabel: string;
 	title: string;
 	description: string;
-	nav: { docs: string; github: string };
+	nav: { docs: string; github: string; theme: string };
 	hero: {
 		eyebrow: string;
 		tagline: string;
@@ -54,7 +54,7 @@ export const en: LandingStrings = {
 	title: 'Prospect: the instance launcher for Vintage Story',
 	description:
 		'Prospect keeps every Vintage Story world in its own instance, installs game versions side by side, and builds the official ModDB right in. In the spirit of Prism Launcher.',
-	nav: { docs: 'Documentation', github: 'GitHub' },
+	nav: { docs: 'Documentation', github: 'GitHub', theme: 'Switch between light and dark theme' },
 	hero: {
 		eyebrow: 'For Vintage Story',
 		tagline:
@@ -150,7 +150,7 @@ export const fr: LandingStrings = {
 	title: 'Prospect : le launcher d’instances pour Vintage Story',
 	description:
 		'Prospect isole chaque monde Vintage Story dans son instance, installe les versions du jeu côte à côte et intègre le ModDB officiel. Dans l’esprit de Prism Launcher.',
-	nav: { docs: 'Documentation', github: 'GitHub' },
+	nav: { docs: 'Documentation', github: 'GitHub', theme: 'Basculer entre thème clair et sombre' },
 	hero: {
 		eyebrow: 'Pour Vintage Story',
 		tagline:
