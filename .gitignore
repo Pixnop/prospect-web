@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Astro / build output
+dist/
+.astro/
+
+# Environment
+.env
+.env.production
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# OS
+.DS_Store
+
+# Outillage de session (agents, graphes de code), jamais versionné
+graphify-out/
+CLAUDE.md
+.claude/
