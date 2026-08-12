@@ -3,10 +3,21 @@ title: Getting started
 description: Build and run Prospect from source.
 ---
 
-Prospect is still in early development. There is no published release to download
-yet: the only way to run it today is to build it yourself.
+Prospect is in early development, but a first pre-release is available: download
+it, or build it yourself.
 
-## Prerequisites
+## Download the pre-release
+
+The [releases page](https://github.com/Pixnop/Prospect/releases/latest) provides a
+Linux archive (`prospect-<version>-linux-x64.tar.gz`, with a ready-to-run
+`Prospect` binary once extracted) and a Windows archive
+(`prospect-<version>-win-x64.zip`, `Prospect.exe`), with SHA-256 sums alongside.
+
+On Windows, the binary is not code-signed yet: SmartScreen will report an unknown
+publisher. Choose "More info", then "Run anyway". There is no installer and no
+auto-update for now: a new version is downloaded from the same place.
+
+## Prerequisites (building)
 
 You need the **.NET 10 SDK** installed. Check your version with:
 

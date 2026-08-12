@@ -5,8 +5,11 @@ description: Account, macOS, data locations and version channels.
 
 ## Can I download Prospect now?
 
-Not yet: the project is in early development and has no published release. See
-[Getting started](../getting-started/) to build it yourself.
+Yes: a pre-release is available on the
+[releases page](https://github.com/Pixnop/Prospect/releases/latest), as a Linux
+archive (tar.gz) and a Windows archive (zip). It is a development build, with no
+installer and no auto-update. See [Getting started](../getting-started/) for the
+details, including the SmartScreen note on Windows.
 
 ## Do I need an account?
 
