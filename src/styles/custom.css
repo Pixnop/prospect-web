@@ -829,3 +829,54 @@ a.card,
 	font-family: var(--font-mono);
 	font-size: 0.8125rem;
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   6. Variante claire de la couche de caractère.
+   La landing porte désormais data-theme (choix Starlight, repli système) :
+   tout ce que la section 5 a posé en sombre se décline ici en clair.
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Sélection : fond cuivre plus léger, texte sombre, sinon illisible sur clair. */
+:root[data-theme='light'] ::selection {
+	background: color-mix(in srgb, var(--copper-500) 30%, transparent);
+	color: var(--stone-950);
+}
+
+/* Lavis du hero : la version sombre (copper-900 → stone-850) écraserait le
+   parchemin ; en clair, un voile cuivré discret qui fond vers le fond. */
+:root[data-theme='light'] .pr-hero::before {
+	background: linear-gradient(160deg, var(--copper-200), var(--stone-100) 65%, var(--bg-window) 100%);
+	opacity: 0.5;
+}
+
+/* Strates : mêmes couches, pigments éclaircis pour tenir sur le parchemin. */
+:root[data-theme='light'] .pr-strata i:nth-child(1) {
+	background: var(--copper-300);
+	opacity: 0.7;
+}
+:root[data-theme='light'] .pr-strata i:nth-child(2) {
+	background: var(--copper-500);
+	opacity: 0.8;
+}
+:root[data-theme='light'] .pr-strata i:nth-child(3) {
+	background: var(--clay-400);
+	opacity: 0.5;
+}
+:root[data-theme='light'] .pr-strata i:nth-child(4) {
+	background: var(--stone-300);
+}
+:root[data-theme='light'] .pr-strata i:nth-child(5) {
+	background: var(--stone-200);
+}
+
+/* Numéros de relevé : l'allumage au survol passe au cuivre foncé, lisible sur
+   fond clair (le copper-400 du sombre manquerait de contraste ici). */
+:root[data-theme='light'] .pr-feature__index {
+	color: var(--stone-300);
+}
+:root[data-theme='light'] .pr-feature:hover .pr-feature__index {
+	color: var(--copper-600);
+}
+:root[data-theme='light'] .pr-gallery .pr-card:hover figcaption {
+	color: var(--copper-700);
+}
