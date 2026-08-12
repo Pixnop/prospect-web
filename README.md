@@ -1,11 +1,15 @@
 # prospect-web
 
+[![site](https://github.com/Pixnop/prospect-web/actions/workflows/site.yml/badge.svg)](https://github.com/Pixnop/prospect-web/actions/workflows/site.yml)
+[![Quality gate](https://sonarcloud.io/api/project_badges/measure?project=Pixnop_prospect-site&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=Pixnop_prospect-site)
+
 Presentation website and user documentation for
 [Prospect](https://github.com/Pixnop/Prospect), a Vintage Story launcher. Built
 with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build).
 
-French is the only content language for now; the locale structure is ready for
-English (see the `locales` comment in `astro.config.mjs`).
+The site is bilingual: English is the default locale at the root, and the full
+French version, the product's original voice, lives under `/fr/`. Doc slugs are
+shared across locales, so the language switcher maps pages one to one.
 
 Live site: <https://leonfvt.fr/prospect-web/>
 
