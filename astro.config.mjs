@@ -4,9 +4,10 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	// GitHub Pages, dépôt de projet (pas pixnop.github.io lui-même) : le site vit
+	// GitHub Pages, dépôt de projet, servi sous le domaine personnalisé du compte
+	// (leonfvt.fr, configuré côté GitHub Pages au niveau du compte) : le site vit
 	// sous /prospect-web/.
-	site: 'https://pixnop.github.io',
+	site: 'https://leonfvt.fr',
 	base: '/prospect-web',
 
 	integrations: [

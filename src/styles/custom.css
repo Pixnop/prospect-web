@@ -6,18 +6,18 @@
  * pose les siennes dans `@layer starlight.*`), donc tout ce qui suit prend le
  * dessus sans avoir besoin de `!important`.
  *
- * Section 1 — tokens bruts du design system (port fidèle de design/tokens/*.css).
- * Section 2 — pont vers les variables --sl-* de Starlight.
- * Section 3 — composants réutilisés (boutons, cartes, badges) pour la landing.
- * Section 4 — mise en page de la landing (hero, fonctionnalités, galerie, etc.).
+ * Section 1 : tokens bruts du design system (port fidèle de design/tokens/*.css).
+ * Section 2 : pont vers les variables --sl-* de Starlight.
+ * Section 3 : composants réutilisés (boutons, cartes, badges) pour la landing.
+ * Section 4 : mise en page de la landing (hero, fonctionnalités, galerie, etc.).
  */
 
 /* ────────────────────────────────────────────────────────────────────────
-   1. Tokens — rampes, sémantiques, typo, espacement, radii, élévation, motion
+   1. Tokens : rampes, sémantiques, typo, espacement, radii, élévation, motion
    ──────────────────────────────────────────────────────────────────────── */
 
 :root {
-	/* Rampe stone — neutres chauds, jamais de noir pur. */
+	/* Rampe stone : neutres chauds, jamais de noir pur. */
 	--stone-950: #111010;
 	--stone-900: #171513;
 	--stone-850: #1d1a18;
@@ -32,7 +32,7 @@
 	--stone-100: #ede6dd;
 	--stone-050: #f7f2eb;
 
-	/* Copper — accent unique, tiré du logo. */
+	/* Copper : accent unique, tiré du logo. */
 	--copper-200: #f0d2b4;
 	--copper-300: #e3b489;
 	--copper-400: #d5a275;
@@ -42,7 +42,7 @@
 	--copper-800: #563723;
 	--copper-900: #2e211a;
 
-	/* Clay — danger. */
+	/* Clay : danger. */
 	--clay-300: #e0836f;
 	--clay-400: #d0604a;
 	--clay-500: #c1503b;
@@ -50,28 +50,28 @@
 	--clay-700: #6e2a20;
 	--clay-900: #2c1613;
 
-	/* Verdigris — succès, à jour, installé. */
+	/* Verdigris : succès, à jour, installé. */
 	--verdigris-300: #8fc4af;
 	--verdigris-400: #7dbba4;
 	--verdigris-500: #5e9c86;
 	--verdigris-600: #4a7e6b;
 	--verdigris-900: #14231e;
 
-	/* Ochre — avertissement, canal unstable. */
+	/* Ochre : avertissement, canal unstable. */
 	--ochre-300: #e9c583;
 	--ochre-400: #e0b662;
 	--ochre-500: #d9a441;
 	--ochre-600: #b08331;
 	--ochre-900: #2a2011;
 
-	/* Slate — information, canal pre-release. */
+	/* Slate : information, canal pre-release. */
 	--slate-300: #afc0d2;
 	--slate-400: #9aaec4;
 	--slate-500: #7c93ae;
 	--slate-600: #61748c;
 	--slate-900: #161a20;
 
-	/* Alias sémantiques — thème sombre, celui par défaut. */
+	/* Alias sémantiques : thème sombre, celui par défaut. */
 	--bg-window: var(--stone-950);
 	--bg-sidebar: #141211;
 	--bg-surface: var(--stone-900);
@@ -140,7 +140,7 @@
 	--fw-semibold: 600;
 	--fw-bold: 700;
 
-	/* Espacement — grille 4px */
+	/* Espacement : grille 4px */
 	--space-1: 2px;
 	--space-2: 4px;
 	--space-3: 6px;
@@ -168,7 +168,7 @@
 	--radius-lg: 14px;
 	--radius-pill: 999px;
 
-	/* Élévation — une ombre douce + une bordure un cran plus claire */
+	/* Élévation : une ombre douce + une bordure un cran plus claire */
 	--elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
 	--elev-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.28);
 	--elev-3: 0 2px 4px rgba(0, 0, 0, 0.45), 0 16px 40px rgba(0, 0, 0, 0.38);
@@ -182,7 +182,7 @@
 	--ease-out: cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* Variante claire — suit la bascule de thème de Starlight (voir section 2). */
+/* Variante claire : suit la bascule de thème de Starlight (voir section 2). */
 :root[data-theme='light'] {
 	--bg-window: #efe9e1;
 	--bg-sidebar: #e6dfd5;
@@ -318,7 +318,7 @@ h1,
 	letter-spacing: -0.02em;
 }
 
-/* Radii — un point de détail que Starlight n'expose pas en variables. */
+/* Radii : un point de détail que Starlight n'expose pas en variables. */
 .starlight-aside {
 	border-radius: var(--radius-md);
 }
@@ -335,7 +335,7 @@ a.card,
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   3. Composants — port des classes pr-* du design system (identiques à
+   3. Composants : port des classes pr-* du design system (identiques à
       celles utilisées par l'application), réutilisées sur la landing.
    ──────────────────────────────────────────────────────────────────────── */
 
@@ -438,7 +438,7 @@ a.card,
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   4. Landing — mise en page propre à la page d'accueil personnalisée.
+   4. Landing : mise en page propre à la page d'accueil personnalisée.
    ──────────────────────────────────────────────────────────────────────── */
 
 .pr-landing {
@@ -474,7 +474,7 @@ a.card,
 	padding-inline: var(--space-8);
 }
 
-/* Barre du haut — reprend la titlebar de l'application : fond bg-sidebar,
+/* Barre du haut : reprend la titlebar de l'application : fond bg-sidebar,
    logo + nom à gauche, liens sobres à droite. */
 .pr-topbar {
 	position: sticky;

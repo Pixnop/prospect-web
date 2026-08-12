@@ -5,7 +5,7 @@ description: Exporte et partage la configuration d'une instance sous forme de mo
 
 Un modpack, c'est le manifeste d'une instance : la version du jeu, la liste des
 mods (identifiant ModDB et version) et lequel de ces mods est activé ou
-désactivé. Le manifeste voyage seul — pas de chemin absolu, pas d'URL signée,
+désactivé. Le manifeste voyage seul : pas de chemin absolu, pas d'URL signée,
 uniquement des références au ModDB.
 
 ## Exporter

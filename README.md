@@ -7,7 +7,7 @@ with [Astro](https://astro.build) and [Starlight](https://starlight.astro.build)
 French is the only content language for now; the locale structure is ready for
 English (see the `locales` comment in `astro.config.mjs`).
 
-Live site: <https://pixnop.github.io/prospect-web/>
+Live site: <https://leonfvt.fr/prospect-web/>
 
 ## Development
 

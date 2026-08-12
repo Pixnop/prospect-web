@@ -30,7 +30,7 @@ desktop.
 
 Le projet avance mais reste en développement précoce : pas de version empaquetée,
 pas d'installeur, pas de mise à jour automatique. Les captures d'écran de cette
-documentation viennent de builds de travail — c'est la meilleure idée honnête de ce
+documentation viennent de builds de travail : c'est la meilleure idée honnête de ce
 à quoi ressemble Prospect aujourd'hui, tant qu'il n'y a rien à télécharger.
 
 Pour suivre l'avancement ou signaler un problème, direction le

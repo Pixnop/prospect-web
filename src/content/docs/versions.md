@@ -9,8 +9,8 @@ instances peuvent pointer vers la même version installée, sans rien retéléch
 
 ## Deux canaux
 
-- **stable** — les versions numérotées normalement, par exemple `1.21.3`.
-- **unstable** — les versions candidates, suffixées `-rc.N`, par exemple
+- **stable** : les versions numérotées normalement, par exemple `1.21.3`.
+- **unstable** : les versions candidates, suffixées `-rc.N`, par exemple
   `1.22.0-rc.1`. Elles sont affichées à part et peuvent être masquées.
 
 ## Aucun compte requis

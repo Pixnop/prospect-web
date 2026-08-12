@@ -24,9 +24,9 @@ Jouer, lui, n'est pas encore pris en charge sur cet OS.
 
 Tout vit sous un seul dossier racine, à un emplacement standard selon l'OS :
 
-- Linux — `~/.local/share/prospect/`
-- Windows — `%APPDATA%\Prospect\`
-- macOS — `~/Library/Application Support/Prospect/`
+- Linux : `~/.local/share/prospect/`
+- Windows : `%APPDATA%\Prospect\`
+- macOS : `~/Library/Application Support/Prospect/`
 
 Les instances sont dans `instances/`, les versions du jeu installées dans
 `versions/`.

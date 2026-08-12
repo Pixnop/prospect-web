@@ -30,6 +30,6 @@ elles.
 
 ## Dupliquer une instance
 
-Dupliquer une instance copie tout son dossier `data/` sous un nouveau nom — mondes,
+Dupliquer une instance copie tout son dossier `data/` sous un nouveau nom : mondes,
 configurations et mods compris. C'est la façon la plus simple de tester un mod
 risqué ou une nouvelle version sans toucher à une partie en cours.
