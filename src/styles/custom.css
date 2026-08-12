@@ -880,3 +880,44 @@ a.card,
 :root[data-theme='light'] .pr-gallery .pr-card:hover figcaption {
 	color: var(--copper-700);
 }
+
+/* Interrupteur de thème de la landing : bouton fantôme aux règles de l'app
+   (lavis cuivré au survol, anneau de focus, aucune géométrie animée). On
+   affiche l'icône de la destination : soleil en sombre, lune en clair. */
+.pr-theme-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	padding: 0;
+	border: none;
+	border-radius: var(--radius-md);
+	background: transparent;
+	color: var(--text-2);
+	cursor: pointer;
+	transition:
+		background-color 80ms var(--ease-standard),
+		color 80ms var(--ease-standard);
+}
+.pr-theme-toggle:hover {
+	background: var(--bg-hover);
+	color: var(--text-1);
+}
+.pr-theme-toggle:focus-visible {
+	outline: 2px solid var(--border-focus);
+	outline-offset: 2px;
+}
+.pr-theme-toggle svg {
+	width: 18px;
+	height: 18px;
+}
+.pr-theme-toggle__moon {
+	display: none;
+}
+:root[data-theme='light'] .pr-theme-toggle__sun {
+	display: none;
+}
+:root[data-theme='light'] .pr-theme-toggle__moon {
+	display: block;
+}
