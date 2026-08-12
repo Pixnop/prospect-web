@@ -6,10 +6,14 @@
  * pose les siennes dans `@layer starlight.*`), donc tout ce qui suit prend le
  * dessus sans avoir besoin de `!important`.
  *
- * Section 1 : tokens bruts du design system (port fidèle de design/tokens/*.css).
+ * Section 1 : tokens bruts du design system (port fidèle de design/tokens/*.css,
+ *             système de verre compris).
  * Section 2 : pont vers les variables --sl-* de Starlight.
- * Section 3 : composants réutilisés (boutons, cartes, badges) pour la landing.
- * Section 4 : mise en page de la landing (hero, fonctionnalités, galerie, etc.).
+ * Section 3 : verre : fond de page commun, profondeurs effectives, repli, grain.
+ * Section 4 : composants réutilisés (boutons, cartes, badges) pour la landing.
+ * Section 5 : mise en page de la landing (hero, fonctionnalités, galerie, etc.).
+ * Sections 6-8 : couche de caractère, variante claire, galerie et lightbox.
+ * Sections 9-10 : doc en fenêtre étroite, doc sous verre.
  */
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -180,6 +184,45 @@
 	--dur-normal: 220ms;
 	--ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
 	--ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+	/* Verre : port de design/tokens/glass.css. Les surfaces sont des vitres
+	   translucides posées sur un fond photographique flouté ; le web dispose du
+	   vrai backdrop-filter, chaque profondeur porte donc son flou propre
+	   (4/8/16 px), là où l'app pré-compose le flou dans l'image de fond.
+	   Alphas sombres identiques au CSS de référence, sauf le voile : monté de
+	   .62 à .72, la valeur retenue dans l'app pour cette capture-là (claire et
+	   très contrastée), et c'est le couple image + voile qui fait l'identité. */
+	--glass-veil: rgba(20, 16, 13, 0.72);
+	--glass-pane: rgba(17, 16, 16, 0.15);
+	--glass-item: rgba(17, 16, 16, 0.5);
+	--glass-chrome: rgba(17, 16, 16, 0.3);
+	--glass-menu: rgba(17, 16, 16, 0.72);
+	/* La feuille de lecture de la doc : quasi couvrante, le fond n'y est plus
+	   qu'une lueur. Propre au site (la doc est un outil de lecture). */
+	--glass-sheet: rgba(17, 16, 16, 0.86);
+	--glass-blur-xs: 4px;
+	--glass-blur-sm: 8px;
+	--glass-blur-md: 16px;
+	/* Liseré : une arête claire cuivrée, jamais une bordure sombre. */
+	--glass-edge: rgba(213, 162, 117, 0.1);
+	--glass-edge-strong: rgba(213, 162, 117, 0.22);
+	--glass-sheen: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+	--glass-sheen-strong: inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -1px 0 rgba(0, 0, 0, 0.22);
+	/* Protection du texte posé hors vitre (ou sur les vitres les plus fines). */
+	--glass-text-shadow: 0 1px 2px rgba(9, 8, 8, 0.55);
+	--glass-protect: rgba(9, 8, 8, 0.55);
+	--glass-row-odd: rgba(43, 39, 36, 0.3);
+	--glass-row-even: rgba(17, 16, 16, 0.3);
+	--glass-shadow: 0 1px 3px rgba(9, 8, 8, 0.5);
+	--glass-shadow-lg: 0 8px 32px rgba(9, 8, 8, 0.55);
+	--glass-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+	--glass-grain-opacity: 0.035;
+	/* Repli « un cran plus opaque » : sans backdrop-filter, et pour les cartes
+	   en fenêtre étroite, la vitre doit garantir seule le plancher de contraste. */
+	--glass-pane-full: rgba(20, 18, 16, 0.55);
+	--glass-item-full: rgba(20, 18, 16, 0.82);
+	--glass-chrome-full: rgba(20, 18, 16, 0.72);
+	--glass-menu-full: rgba(20, 18, 16, 0.93);
 }
 
 /* Variante claire : suit la bascule de thème de Starlight (voir section 2). */
@@ -232,6 +275,36 @@
 	--elev-1: 0 1px 2px rgba(56, 42, 30, 0.1);
 	--elev-2: 0 1px 2px rgba(56, 42, 30, 0.1), 0 8px 24px rgba(56, 42, 30, 0.1);
 	--elev-3: 0 2px 4px rgba(56, 42, 30, 0.12), 0 16px 40px rgba(56, 42, 30, 0.16);
+
+	/* Verre, variante claire : alphas VALIDÉS dans l'app, un cran plus
+	   transparents que la variante .theme-light du CSS de référence (voile
+	   .72 → .54, pane .42 → .31, chrome .55 → .44, item .62 → .48, menu
+	   .86 → .78) : en clair, le fond doit se lire à travers les vitres. Si un
+	   texte souffre, la réponse est locale (protection, liseré), jamais une
+	   remontée d'alpha globale. */
+	--glass-veil: rgba(240, 233, 224, 0.54);
+	--glass-pane: rgba(247, 242, 235, 0.31);
+	--glass-item: rgba(255, 255, 255, 0.48);
+	--glass-chrome: rgba(247, 242, 235, 0.44);
+	--glass-menu: rgba(252, 249, 244, 0.78);
+	--glass-sheet: rgba(247, 242, 235, 0.92);
+	--glass-edge: rgba(126, 82, 48, 0.14);
+	--glass-edge-strong: rgba(126, 82, 48, 0.28);
+	--glass-sheen: inset 0 1px 0 rgba(255, 255, 255, 0.75);
+	/* --glass-sheen-strong : hérite de la paire de :root, comme dans l'app. */
+	/* Protection de texte : halo lin, pas d'ombre noire (une ombre noire sous
+	   une encre sombre n'aide pas, elle épaissit : décision reprise de l'app).
+	   Halo doublé : un text-shadow CSS porte moins que le DropShadowEffect. */
+	--glass-text-shadow: 0 0 3px rgba(247, 242, 235, 0.9), 0 0 8px rgba(247, 242, 235, 0.45);
+	--glass-protect: rgba(247, 242, 235, 0.6);
+	--glass-row-odd: rgba(255, 255, 255, 0.32);
+	--glass-row-even: rgba(247, 242, 235, 0.24);
+	--glass-shadow: 0 1px 3px rgba(56, 42, 30, 0.14);
+	--glass-shadow-lg: 0 8px 32px rgba(56, 42, 30, 0.18);
+	--glass-pane-full: rgba(247, 242, 235, 0.66);
+	--glass-item-full: rgba(255, 255, 255, 0.82);
+	--glass-chrome-full: rgba(247, 242, 235, 0.8);
+	--glass-menu-full: rgba(252, 249, 244, 0.95);
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -258,7 +331,9 @@
 	--sl-color-bg: var(--bg-window);
 	--sl-color-bg-nav: var(--bg-sidebar);
 	--sl-color-bg-sidebar: var(--bg-sidebar);
-	--sl-color-bg-inline-code: var(--stone-850);
+	/* Un cran plus clair qu'avant (stone-850) : sur la feuille de lecture
+	   translucide, la puce de code doit garder une marche de contraste. */
+	--sl-color-bg-inline-code: var(--stone-800);
 	--sl-color-hairline-light: var(--stone-700);
 	--sl-color-hairline: var(--stone-800);
 	--sl-color-hairline-shade: var(--stone-950);
@@ -306,7 +381,8 @@
 	--sl-color-bg: var(--bg-window);
 	--sl-color-bg-nav: var(--bg-sidebar);
 	--sl-color-bg-sidebar: var(--bg-window);
-	--sl-color-bg-inline-code: #f7f2eb;
+	/* Blanc plein : #f7f2eb se confondait avec la feuille de lecture. */
+	--sl-color-bg-inline-code: #ffffff;
 	--sl-color-hairline-light: #dcd3c7;
 	--sl-color-hairline-shade: #dcd3c7;
 }
@@ -335,7 +411,81 @@ a.card,
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   3. Composants : port des classes pr-* du design system (identiques à
+   3. Verre : le fond commun et la mécanique des vitres.
+   Le fond de page est la capture embarquée de l'application (flou de base,
+   brightness et saturation déjà pré-composés dans l'image : c'est
+   l'identité visuelle exacte du launcher), fixée derrière tout, avec le
+   voile de thème par-dessus et le grain du fond. Les vitres lisent leur
+   fond dans --surface-* : par défaut le repli opaque, remplacé par les
+   vraies valeurs translucides dès que backdrop-filter existe. Le flou par
+   profondeur est déclaré sur les composants ; un navigateur sans
+   backdrop-filter l'ignore et le repli garantit la lisibilité.
+   ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+	--surface-pane: var(--glass-pane-full);
+	--surface-item: var(--glass-item-full);
+	--surface-chrome: var(--glass-chrome-full);
+	--surface-menu: var(--glass-menu-full);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+	:root {
+		--surface-pane: var(--glass-pane);
+		--surface-item: var(--glass-item);
+		--surface-chrome: var(--glass-chrome);
+		--surface-menu: var(--glass-menu);
+	}
+}
+
+/* Les deux couches fixes : image + voile, puis le grain du fond (monté d'un
+   facteur 1,6, comme dans la référence : c'est sur le fond que le flou de la
+   photo laisse voir ses bandes de dégradé). */
+body::before {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	background-image: linear-gradient(var(--glass-veil), var(--glass-veil)), url('../assets/backdrop.jpg');
+	background-size: cover;
+	background-position: center;
+}
+body::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	background-image: var(--glass-grain);
+	opacity: calc(var(--glass-grain-opacity) * 1.6);
+}
+
+/* Grain des vitres : sur ::after, pour ne jamais intercepter le pointeur.
+   Le flou seul lit plastique ; trois pour cent de bruit lui rendent sa dent. */
+.pr-topbar::after,
+.pr-card::after,
+.pr-footer::after,
+.pr-lightbox::after,
+.page > .header::after,
+.sidebar-content::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	border-radius: inherit;
+	background-image: var(--glass-grain);
+	opacity: var(--glass-grain-opacity);
+	mix-blend-mode: overlay;
+}
+
+@media print {
+	body::before,
+	body::after {
+		display: none;
+	}
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   4. Composants : port des classes pr-* du design system (identiques à
       celles utilisées par l'application), réutilisées sur la landing.
    ──────────────────────────────────────────────────────────────────────── */
 
@@ -358,30 +508,40 @@ a.card,
 	transition:
 		background var(--dur-instant) var(--ease-standard),
 		border-color var(--dur-instant) var(--ease-standard),
-		color var(--dur-instant) var(--ease-standard);
+		color var(--dur-instant) var(--ease-standard),
+		box-shadow var(--dur-instant) var(--ease-standard);
 }
 .pr-btn:focus-visible {
 	outline: none;
-	box-shadow: var(--focus-ring);
+	box-shadow: var(--focus-ring) !important;
 }
+/* Règle du verre : au survol, l'ombre tombe au lieu de grandir : le panneau
+   monte vers le curseur. */
 .pr-btn--primary {
 	background: var(--accent);
 	color: var(--text-on-accent) !important;
+	box-shadow: var(--glass-shadow);
 }
 .pr-btn--primary:hover {
 	background: var(--accent-hover);
+	box-shadow: none;
 }
 .pr-btn--primary:active {
 	background: var(--accent-pressed);
 }
+/* Bouton secondaire : une vitre d'item, liseré cuivré, arête spéculaire. */
 .pr-btn--secondary {
-	background: transparent;
-	border-color: var(--border-strong);
+	background: var(--surface-item);
+	-webkit-backdrop-filter: blur(var(--glass-blur-xs));
+	backdrop-filter: blur(var(--glass-blur-xs));
+	border-color: var(--glass-edge);
 	color: var(--text-1) !important;
+	box-shadow: var(--glass-shadow), var(--glass-sheen);
 }
 .pr-btn--secondary:hover {
-	background: var(--bg-hover);
-	border-color: var(--accent);
+	background: var(--bg-selected);
+	border-color: var(--glass-edge-strong);
+	box-shadow: none;
 }
 .pr-btn--secondary:active {
 	background: var(--bg-active);
@@ -391,19 +551,24 @@ a.card,
 	flex-shrink: 0;
 }
 
+/* Carte = vitre d'item : pierre à 50 %, flou 4, liseré cuivré, arête
+   spéculaire. position:relative porte le grain (section 3). */
 .pr-card {
-	background: var(--bg-surface);
-	border: 1px solid var(--border-subtle);
+	position: relative;
+	background: var(--surface-item);
+	-webkit-backdrop-filter: blur(var(--glass-blur-xs));
+	backdrop-filter: blur(var(--glass-blur-xs));
+	border: 1px solid var(--glass-edge);
 	border-radius: var(--radius-md);
-	box-shadow: var(--elev-1);
+	box-shadow: var(--glass-shadow), var(--glass-sheen);
 	overflow: hidden;
 	transition:
 		border-color var(--dur-fast) var(--ease-standard),
 		box-shadow var(--dur-fast) var(--ease-standard);
 }
 .pr-card--interactive:hover {
-	border-color: var(--border-strong);
-	box-shadow: var(--elev-2);
+	border-color: var(--glass-edge-strong);
+	box-shadow: var(--glass-sheen-strong);
 }
 
 .pr-badge {
@@ -438,7 +603,9 @@ a.card,
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   4. Landing : mise en page propre à la page d'accueil personnalisée.
+   5. Landing : mise en page propre à la page d'accueil personnalisée.
+   Le fond photographique fait l'essentiel : le hero pose son texte protégé
+   directement sur le verre, les sections empilent leurs vitres par-dessus.
    ──────────────────────────────────────────────────────────────────────── */
 
 .pr-landing {
@@ -474,14 +641,17 @@ a.card,
 	padding-inline: var(--space-8);
 }
 
-/* Barre du haut : reprend la titlebar de l'application : fond bg-sidebar,
-   logo + nom à gauche, liens sobres à droite. */
+/* Barre du haut : reprend la titlebar de l'application : vitre chrome
+   (pierre 30 %, flou 8), liseré cuivré en pied, logo + nom à gauche. */
 .pr-topbar {
 	position: sticky;
 	top: 0;
 	z-index: 20;
-	background: var(--bg-sidebar);
-	border-bottom: 1px solid var(--border-subtle);
+	background: var(--surface-chrome);
+	-webkit-backdrop-filter: blur(var(--glass-blur-sm));
+	backdrop-filter: blur(var(--glass-blur-sm));
+	border-bottom: 1px solid var(--glass-edge);
+	box-shadow: var(--glass-shadow);
 }
 .pr-topbar__inner {
 	display: flex;
@@ -529,14 +699,25 @@ a.card,
 	padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(3rem, 6vw, 5rem);
 	text-align: center;
 }
+/* Lavis du hero : sur le fond photographique il ne peint plus une scène, il
+   réchauffe et donne au texte du hero son plancher de contraste, puis fond
+   vers le verre nu. */
 .pr-hero::before {
 	content: '';
 	position: absolute;
 	inset: 0;
 	z-index: -1;
 	background: linear-gradient(160deg, var(--copper-900), var(--stone-850) 65%, var(--bg-window) 100%);
-	opacity: 0.55;
+	opacity: 0.45;
 	mask-image: linear-gradient(to bottom, black, transparent);
+}
+/* Texte posé directement sur le verre : la protection de l'app (ombre en
+   sombre, halo lin en clair). */
+.pr-hero__title,
+.pr-hero__tagline,
+.pr-hero__status,
+.pr-hero__eyebrow {
+	text-shadow: var(--glass-text-shadow);
 }
 .pr-hero__logo {
 	width: 64px;
@@ -581,13 +762,31 @@ a.card,
 .pr-section {
 	padding-block: clamp(3rem, 6vw, 4.5rem);
 }
+/* Section alternée : une bande de rangée (grammaire des listes translucides),
+   pas une vitre : le flou reste réservé aux panneaux qui portent du contenu. */
 .pr-section--alt {
-	background: var(--bg-surface);
-	border-block: 1px solid var(--border-subtle);
+	background: var(--glass-row-even);
+	border-block: 1px solid var(--glass-edge);
 }
 .pr-section__head {
+	position: relative;
 	max-width: 40rem;
 	margin-bottom: var(--space-10);
+}
+/* Les têtes de section vivent hors vitre : un écrin radial (pr-protect de la
+   référence) leur donne le plancher que la vitre ne fournit pas ici, plus la
+   protection par ligne. */
+.pr-section__head::before {
+	content: '';
+	position: absolute;
+	inset: -16px -24px;
+	z-index: -1;
+	background: radial-gradient(120% 100% at 0% 50%, var(--glass-protect), transparent 70%);
+}
+.pr-section__head .pr-section__title,
+.pr-section__head .pr-section__lead,
+.pr-section__head .pr-section__eyebrow {
+	text-shadow: var(--glass-text-shadow);
 }
 .pr-section__eyebrow {
 	display: block;
@@ -660,17 +859,25 @@ a.card,
 	object-fit: cover;
 	background: var(--bg-surface);
 }
+/* Légende sur bande (glassBand de l'app) : la teinte de rangée impaire posée
+   PAR-DESSUS la vitre porteuse assure le plancher du texte. */
 .pr-gallery figcaption {
 	padding: var(--space-5) var(--card-pad);
 	font-size: 0.875rem;
-	color: var(--text-3);
-	border-top: 1px solid var(--border-subtle);
+	color: var(--text-2);
+	background: var(--glass-row-odd);
+	border-top: 1px solid var(--glass-edge);
 }
 
-/* Téléchargement */
+/* Téléchargement : la carte « raised » du système : vitre menu (pierre 72 %,
+   flou 16), l'emphase d'un dialogue pour l'appel principal du site. */
 .pr-download {
 	padding: var(--space-10);
 	text-align: center;
+	background: var(--surface-menu);
+	-webkit-backdrop-filter: blur(var(--glass-blur-md));
+	backdrop-filter: blur(var(--glass-blur-md));
+	box-shadow: var(--glass-shadow-lg), var(--glass-sheen);
 }
 .pr-download__badge {
 	margin-bottom: var(--space-6);
@@ -690,9 +897,13 @@ a.card,
 	margin-top: var(--space-8);
 }
 
-/* Pied de page */
+/* Pied de page : même chrome de verre que la barre du haut. */
 .pr-footer {
-	border-top: 1px solid var(--border-subtle);
+	position: relative;
+	background: var(--surface-chrome);
+	-webkit-backdrop-filter: blur(var(--glass-blur-sm));
+	backdrop-filter: blur(var(--glass-blur-sm));
+	border-top: 1px solid var(--glass-edge);
 	padding-block: var(--space-9);
 }
 .pr-footer__inner {
@@ -729,8 +940,31 @@ a.card,
 	}
 }
 
+/* Fenêtre étroite : le verre ne doit coûter ni lisibilité ni fluidité. Le
+   hero et la barre du haut portent l'essentiel de l'effet ; cartes et pied
+   de page basculent sur le repli opaque, sans flou propre. */
+@media (max-width: 48rem) {
+	.pr-card {
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+		background: var(--glass-item-full);
+	}
+	.pr-download {
+		background: var(--glass-menu-full);
+	}
+	.pr-footer {
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+		background: var(--glass-chrome-full);
+	}
+	.pr-btn--secondary {
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
+}
+
 /* ────────────────────────────────────────────────────────────────────────
-   5. Couche de caractère : la marque assumée.
+   6. Couche de caractère : la marque assumée.
    Le logo est une carotte géologique ; le site en reprend le motif : strates
    plates sous le hero, features numérotées comme des relevés de prospection,
    sélection cuivrée. Interactions conformes au design system : la lumière et
@@ -802,39 +1036,48 @@ a.card,
 	color: var(--copper-400);
 }
 
-/* Cartes vivantes : bordure qui s'éclaircit et élévation qui monte d'un cran
-   au survol, comme les cartes interactives de l'application. */
+/* Cartes vivantes : le liseré s'éclaircit et l'ombre TOMBE au survol (la
+   vitre monte vers le curseur), l'arête spéculaire se renforce. Conforme aux
+   cartes interactives du système de verre : la géométrie ne bouge jamais. */
 .pr-landing .pr-feature:hover,
 .pr-landing .pr-gallery .pr-card:hover {
-	border-color: var(--border-strong);
-	box-shadow: var(--elev-2);
+	border-color: var(--glass-edge-strong);
+	box-shadow: var(--glass-sheen-strong);
 }
 
-/* Galerie : légendes en surligne mono, cadre qui répond au survol. */
+/* Galerie : légendes en surligne mono, cadre qui répond au survol. Sur la
+   bande de verre, text-2 tient le contraste que text-3 n'assurait que sur
+   surface pleine. */
 .pr-gallery figcaption {
 	font-family: var(--font-mono);
 	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
-	color: var(--text-3);
+	color: var(--text-2);
 }
 .pr-gallery .pr-card:hover figcaption {
 	color: var(--copper-300);
 }
 
-/* Sélecteur de langue de la barre du haut : séparé du reste par un filet. */
+/* Sélecteur de langue de la barre du haut : séparé du reste par un filet,
+   désormais le liseré du verre. */
 .pr-topbar__lang {
 	padding-left: var(--space-6);
-	border-left: 1px solid var(--border-subtle);
+	border-left: 1px solid var(--glass-edge);
 	font-family: var(--font-mono);
 	font-size: 0.8125rem;
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   6. Variante claire de la couche de caractère.
+   7. Variante claire de la couche de caractère.
    La landing porte désormais data-theme (choix Starlight, repli système) :
-   tout ce que la section 5 a posé en sombre se décline ici en clair.
+   tout ce que la section 6 a posé en sombre se décline ici en clair.
    ──────────────────────────────────────────────────────────────────────── */
+
+/* Les contrôles natifs et ascenseurs suivent le thème effectif. */
+:root[data-theme='light'] .pr-landing {
+	color-scheme: light;
+}
 
 /* Sélection : fond cuivre plus léger, texte sombre, sinon illisible sur clair. */
 :root[data-theme='light'] ::selection {
@@ -923,7 +1166,7 @@ a.card,
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   7. Galerie à deux thèmes et lightbox.
+   8. Galerie à deux thèmes et lightbox.
    Chaque capture existe en sombre et en clair ; le CSS n'affiche que la
    variante du thème courant (les images cachées, en lazy, ne se chargent
    pas). Le clic ouvre le <dialog> natif : voile aux tokens, fermeture par
@@ -958,16 +1201,22 @@ a.card,
 	display: block;
 }
 
+/* La lightbox est un dialogue : vitre menu (pierre 72 %, flou 16), liseré,
+   grande ombre, et un voile qui floute légèrement la page dessous. */
 .pr-lightbox {
 	padding: var(--space-6);
-	border: 1px solid var(--border-subtle);
+	border: 1px solid var(--glass-edge);
 	border-radius: var(--radius-lg);
-	background: var(--bg-surface);
-	box-shadow: var(--elev-3);
+	background: var(--surface-menu);
+	-webkit-backdrop-filter: blur(var(--glass-blur-md));
+	backdrop-filter: blur(var(--glass-blur-md));
+	box-shadow: var(--glass-shadow-lg), var(--glass-sheen);
 	max-width: min(1220px, 94vw);
 }
 .pr-lightbox::backdrop {
 	background: var(--bg-scrim);
+	-webkit-backdrop-filter: blur(var(--glass-blur-xs));
+	backdrop-filter: blur(var(--glass-blur-xs));
 }
 .pr-lightbox img {
 	max-width: 100%;
@@ -989,9 +1238,9 @@ a.card,
 	width: 32px;
 	height: 32px;
 	padding: 0;
-	border: none;
+	border: 1px solid var(--glass-edge);
 	border-radius: var(--radius-md);
-	background: var(--bg-surface-raised);
+	background: var(--glass-row-odd);
 	color: var(--text-2);
 	cursor: pointer;
 }
@@ -1009,7 +1258,7 @@ a.card,
 }
 
 /* ────────────────────────────────────────────────────────────────────────
-   8. Doc en fenêtre étroite : rien ne déborde de son cadre.
+   9. Doc en fenêtre étroite : rien ne déborde de son cadre.
    Sur mobile, les tables (celle de la migration en tête) doivent défiler
    DANS leur conteneur au lieu de pousser sous le bord de l'écran, et les
    longs chemins en code inline doivent pouvoir se couper. Les blocs de
@@ -1022,4 +1271,111 @@ a.card,
 }
 .sl-markdown-content :not(pre) > code {
 	overflow-wrap: anywhere;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   10. La doc sous verre : chrome translucide, lecture sur feuille couvrante.
+   La doc est un outil de lecture, le verre s'y applique avec retenue : le
+   fond de page et le chrome (header, sidebar, barre de sommaire mobile)
+   sont des vitres ; le corps de page repose sur une feuille quasi couvrante
+   (--glass-sheet) où le fond n'est plus qu'une lueur, sans flou propre (à
+   cet alpha il ne rendrait rien, et la lecture n'en veut pas). Starlight
+   pose ses règles dans @layer starlight.* : tout ce qui suit, hors couche,
+   l'emporte sans !important. Les acquis de la section 9 ne bougent pas.
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Header fixe : le chrome de verre de la titlebar de l'app. */
+.page > .header {
+	background-color: var(--surface-chrome);
+	-webkit-backdrop-filter: blur(var(--glass-blur-sm));
+	backdrop-filter: blur(var(--glass-blur-sm));
+	border-bottom: 1px solid var(--glass-edge);
+	box-shadow: var(--glass-shadow);
+}
+
+/* Sidebar : la vitre chrome (pierre 30 %, flou 8), liseré côté contenu. */
+.sidebar-pane {
+	background-color: var(--surface-chrome);
+	-webkit-backdrop-filter: blur(var(--glass-blur-sm));
+	backdrop-filter: blur(var(--glass-blur-sm));
+}
+.sidebar-content {
+	position: relative;
+}
+@media (min-width: 50rem) {
+	.sidebar-pane {
+		border-inline-end: 1px solid var(--glass-edge);
+	}
+}
+/* En tiroir mobile, la sidebar recouvre la lecture : repli opaque, pas de
+   flou plein écran. */
+@media (max-width: 49.9375rem) {
+	.sidebar-pane {
+		background-color: var(--glass-menu-full);
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
+}
+
+/* La feuille de lecture : tout ce qui vit à droite de la sidebar (contenu,
+   sommaire, pagination, pied de page) repose sur la même surface. */
+.main-frame {
+	min-height: 100vh;
+}
+.main-frame > .lg\:sl-flex {
+	background: var(--glass-sheet);
+	min-height: calc(100vh - var(--sl-nav-height) - var(--sl-mobile-toc-height));
+}
+
+/* Barre « Sur cette page » mobile : même chrome que le header ; sa liste
+   déroulée recouvre du texte, donc repli opaque. */
+mobile-starlight-toc nav {
+	background-color: var(--surface-chrome);
+	-webkit-backdrop-filter: blur(var(--glass-blur-sm));
+	backdrop-filter: blur(var(--glass-blur-sm));
+	border-top-color: var(--glass-edge);
+}
+mobile-starlight-toc .dropdown {
+	background-color: var(--glass-menu-full);
+	border-color: var(--glass-edge);
+}
+
+/* Recherche : le déclencheur est une vitre d'item (un champ de l'app)… */
+site-search button[data-open-modal] {
+	background-color: var(--surface-item);
+	-webkit-backdrop-filter: blur(var(--glass-blur-xs));
+	backdrop-filter: blur(var(--glass-blur-xs));
+	border: 1px solid var(--glass-edge);
+	border-radius: var(--radius-sm);
+	box-shadow: var(--glass-shadow), var(--glass-sheen);
+	color: var(--sl-color-gray-2);
+	transition:
+		border-color var(--dur-instant) var(--ease-standard),
+		box-shadow var(--dur-instant) var(--ease-standard);
+}
+site-search button[data-open-modal]:hover {
+	border-color: var(--glass-edge-strong);
+	box-shadow: none;
+}
+/* … et la modale un dialogue de verre (pierre 72 %, flou 16). En fenêtre
+   étroite elle occupe l'écran entier : repli opaque, sans flou plein écran. */
+site-search dialog {
+	background-color: var(--surface-menu);
+	-webkit-backdrop-filter: blur(var(--glass-blur-md));
+	backdrop-filter: blur(var(--glass-blur-md));
+	border: 1px solid var(--glass-edge);
+	box-shadow: var(--glass-shadow-lg), var(--glass-sheen);
+}
+@media (max-width: 49.9375rem) {
+	site-search dialog {
+		background-color: var(--glass-menu-full);
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
+}
+
+/* Bandes de rangées du verre dans les tables (à la place du gris bleuté que
+   le thème Starlight par défaut laissait filtrer en sombre). */
+.sl-markdown-content tr:nth-child(2n) {
+	background-color: var(--glass-row-odd);
 }
