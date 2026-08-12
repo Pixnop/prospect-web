@@ -1,23 +1,22 @@
 ---
-title: Les modpacks
-description: Exporte et partage la configuration d'une instance sous forme de modpack.
+title: Modpacks
+description: Export and share an instance's configuration as a modpack.
 ---
 
-Un modpack, c'est le manifeste d'une instance : la version du jeu, la liste des
-mods (identifiant ModDB et version) et lequel de ces mods est activé ou
-désactivé. Le manifeste voyage seul : pas de chemin absolu, pas d'URL signée,
-uniquement des références au ModDB.
+A modpack is an instance's manifest: the game version, the mod list (ModDB
+identifier and version) and which of those mods are enabled or disabled. The
+manifest travels alone: no absolute path, no signed URL, only references to the
+ModDB.
 
-## Exporter
+## Exporting
 
-Depuis le détail d'une instance, "Exporter" produit un fichier de modpack
-portable. L'état de chaque mod (activé ou désactivé) part avec lui : réimporter
-le pack ailleurs recrée exactement la même configuration, pas juste la même liste
-de mods.
+From an instance's page, "Export" produces a portable modpack file. Each mod's
+state (enabled or disabled) travels with it: importing the pack elsewhere
+recreates the exact same configuration, not merely the same list of mods.
 
-## Importer
+## Importing
 
-Importer un modpack crée une nouvelle instance, installe la version de jeu
-manquante si besoin, puis résout chaque mod auprès du ModDB. Si un mod ne peut
-pas être résolu (retiré, renommé), l'import continue pour le reste et signale
-précisément ce qui a échoué plutôt que de tout annuler.
+Importing a modpack creates a new instance, installs the missing game version if
+needed, then resolves every mod against the ModDB. If one mod cannot be resolved
+(removed, renamed), the import carries on with the rest and reports precisely
+what failed rather than cancelling everything.

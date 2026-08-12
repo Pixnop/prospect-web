@@ -1,40 +1,38 @@
 ---
 title: FAQ
-description: Compte, macOS, emplacement des données et canaux de version.
+description: Account, macOS, data locations and version channels.
 ---
 
-## Est-ce que je peux télécharger Prospect maintenant ?
+## Can I download Prospect now?
 
-Pas encore : le projet est en développement précoce et n'a pas de version
-publiée. Voir [Premiers pas](../premiers-pas/) pour le compiler soi-même.
+Not yet: the project is in early development and has no published release. See
+[Getting started](../getting-started/) to build it yourself.
 
-## Un compte est-il nécessaire ?
+## Do I need an account?
 
-Non, pas pour ce que couvre le MVP. Lister et télécharger les versions du jeu ne
-demande aucun compte vintagestory.at : c'est entièrement public. Un compte ne
-deviendra utile que plus tard, pour le confort du multijoueur.
+No, not for anything the MVP covers. Listing and downloading game versions
+requires no vintagestory.at account: it is entirely public. An account only
+becomes useful later, as a multiplayer convenience.
 
-## Et macOS ?
+## What about macOS?
 
-Le téléchargement fonctionne : Prospect récupère et installe les builds macOS
-(`mac-arm64` et `mac-x64`) comme n'importe quelle autre plateforme. Le bouton
-Jouer, lui, n'est pas encore pris en charge sur cet OS.
+Downloading works: Prospect fetches and installs the macOS builds (`mac-arm64`
+and `mac-x64`) like any other platform. The Play button is not supported on that
+OS yet.
 
-## Où sont mes données ?
+## Where is my data?
 
-Tout vit sous un seul dossier racine, à un emplacement standard selon l'OS :
+Everything lives under one root folder, at the standard location for your OS:
 
-- Linux : `~/.local/share/prospect/`
-- Windows : `%APPDATA%\Prospect\`
-- macOS : `~/Library/Application Support/Prospect/`
+- Linux: `~/.local/share/prospect/`
+- Windows: `%APPDATA%\Prospect\`
+- macOS: `~/Library/Application Support/Prospect/`
 
-Les instances sont dans `instances/`, les versions du jeu installées dans
-`versions/`.
+Instances live in `instances/`, installed game versions in `versions/`.
 
-## C'est quoi le canal rc ?
+## What is the rc channel?
 
-`rc` veut dire *release candidate* : une version candidate à devenir la
-prochaine stable, publiée sur le canal unstable pour être testée avant la
-sortie officielle. Elle se reconnaît à son suffixe, par exemple
-`1.22.0-rc.1`. Rien n'empêche de l'installer à côté d'une version stable dans
-une instance séparée.
+`rc` stands for *release candidate*: a version candidate to become the next
+stable, published on the unstable channel to be tested before the official
+release. You can tell one by its suffix, `1.22.0-rc.1` for example. Nothing
+stops you from installing it next to a stable version, in a separate instance.

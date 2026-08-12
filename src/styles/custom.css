@@ -728,3 +728,104 @@ a.card,
 		gap: var(--space-6);
 	}
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   5. Couche de caractère : la marque assumée.
+   Le logo est une carotte géologique ; le site en reprend le motif : strates
+   plates sous le hero, features numérotées comme des relevés de prospection,
+   sélection cuivrée. Interactions conformes au design system : la lumière et
+   l'élévation bougent, jamais la géométrie (pas de scale, pas de translate).
+   ──────────────────────────────────────────────────────────────────────── */
+
+/* Sélection de texte au cuivre, sur tout le site (landing et doc). */
+::selection {
+	background: color-mix(in srgb, var(--copper-500) 55%, transparent);
+	color: var(--stone-050);
+}
+
+/* La bande de strates : cinq couches plates au pied du hero, écho direct du
+   logo. Décorative (aria-hidden), aucune animation. */
+.pr-strata {
+	position: absolute;
+	inset-inline: 0;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+}
+.pr-strata i {
+	display: block;
+	height: 3px;
+}
+.pr-strata i:nth-child(1) {
+	background: var(--copper-700);
+	opacity: 0.5;
+}
+.pr-strata i:nth-child(2) {
+	background: var(--copper-900);
+	height: 5px;
+}
+.pr-strata i:nth-child(3) {
+	background: var(--clay-700);
+	opacity: 0.55;
+	height: 2px;
+}
+.pr-strata i:nth-child(4) {
+	background: var(--stone-700);
+	height: 4px;
+}
+.pr-strata i:nth-child(5) {
+	background: var(--stone-850);
+	height: 6px;
+}
+
+/* Surligne du hero : la petite ligne d'attache au-dessus du logo. */
+.pr-hero__eyebrow {
+	margin-bottom: var(--space-7);
+	color: var(--copper-300);
+}
+
+/* Numéros de relevé sur les cartes de fonctionnalités : gros chiffre mono en
+   filigrane, coin haut droit, qui s'allume avec la carte. */
+.pr-feature {
+	position: relative;
+}
+.pr-feature__index {
+	position: absolute;
+	top: var(--space-5);
+	right: var(--space-6);
+	font-size: 1.5rem;
+	letter-spacing: 0.06em;
+	color: var(--stone-600);
+	transition: color 80ms var(--ease-standard);
+}
+.pr-feature:hover .pr-feature__index {
+	color: var(--copper-400);
+}
+
+/* Cartes vivantes : bordure qui s'éclaircit et élévation qui monte d'un cran
+   au survol, comme les cartes interactives de l'application. */
+.pr-landing .pr-feature:hover,
+.pr-landing .pr-gallery .pr-card:hover {
+	border-color: var(--border-strong);
+	box-shadow: var(--elev-2);
+}
+
+/* Galerie : légendes en surligne mono, cadre qui répond au survol. */
+.pr-gallery figcaption {
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--text-3);
+}
+.pr-gallery .pr-card:hover figcaption {
+	color: var(--copper-300);
+}
+
+/* Sélecteur de langue de la barre du haut : séparé du reste par un filet. */
+.pr-topbar__lang {
+	padding-left: var(--space-6);
+	border-left: 1px solid var(--border-subtle);
+	font-family: var(--font-mono);
+	font-size: 0.8125rem;
+}

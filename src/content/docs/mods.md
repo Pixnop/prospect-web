@@ -1,27 +1,27 @@
 ---
-title: Les mods
-description: Installe des mods depuis le ModDB officiel, directement par instance.
+title: Mods
+description: Install mods from the official ModDB, straight into an instance.
 ---
 
-Le navigateur de mods interroge le ModDB officiel
-([mods.vintagestory.at](https://mods.vintagestory.at)) directement depuis
-Prospect : recherche par nom, filtres par tag (Exploration, Utility, Worldgen…) et
-par version de jeu.
+The mod browser talks to the official ModDB
+([mods.vintagestory.at](https://mods.vintagestory.at)) from inside Prospect:
+search by name, filter by tag (Exploration, Utility, Worldgen and so on) and by
+game version.
 
-## Une installation par instance
+## Installs are per instance
 
-Les mods s'installent dans l'instance depuis laquelle tu ouvres le navigateur, pas
-globalement. La compatibilité affichée sur chaque mod (par exemple `1.21.3` ·
-`client et serveur`) est calculée pour cette instance précise.
+Mods install into the instance you opened the browser from, never globally. The
+compatibility shown on each mod (`1.21.3` · `client and server`, for example) is
+computed for that precise instance.
 
-## Dépendances proposées, jamais imposées
+## Dependencies proposed, never imposed
 
-Quand un mod a besoin d'un autre mod pour fonctionner, Prospect te le propose en
-un clic. Il ne l'installe jamais à ta place, et te prévient avant de retirer un mod
-si ça casserait une dépendance d'un autre mod déjà installé.
+When a mod needs another mod to work, Prospect offers it in one click. It never
+installs anything on your behalf, and it warns you before removing a mod that
+another installed mod depends on.
 
-## Activer, désactiver, sans perdre le fichier
+## Enable, disable, keep the file
 
-Chaque mod installé a son propre interrupteur d'activation. Désactiver un mod ne
-le supprime pas : il redevient disponible d'un clic, ce que gérait mal VS
-Launcher, qui ne proposait qu'installer, mettre à jour ou supprimer.
+Every installed mod has its own toggle. Disabling a mod does not delete it: one
+click brings it back. VS Launcher never had this; its only verbs were install,
+update and delete.

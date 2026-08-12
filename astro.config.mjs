@@ -4,29 +4,39 @@ import starlight from '@astrojs/starlight';
 
 // https://astro.build/config
 export default defineConfig({
-	// GitHub Pages, dépôt de projet, servi sous le domaine personnalisé du compte
-	// (leonfvt.fr, configuré côté GitHub Pages au niveau du compte) : le site vit
-	// sous /prospect-web/.
+	// GitHub Pages : le compte porte un domaine personnalisé (leonfvt.fr), les pages de
+	// projet sont donc servies dessous. Le site vit sous /prospect-web/.
 	site: 'https://leonfvt.fr',
 	base: '/prospect-web',
+
+	// Les sept URLs françaises publiées avant l'arrivée de l'anglais redirigent vers
+	// leur nouvelle adresse sous /fr/ (slugs anglais, identiques dans les deux langues).
+	redirects: {
+		'/premiers-pas/': '/prospect-web/fr/getting-started/',
+		'/instances/': '/prospect-web/fr/instances/',
+		'/versions/': '/prospect-web/fr/game-versions/',
+		'/mods/': '/prospect-web/fr/mods/',
+		'/modpacks/': '/prospect-web/fr/modpacks/',
+		'/migration-vslauncher/': '/prospect-web/fr/migrate-from-vs-launcher/',
+		'/faq/': '/prospect-web/fr/faq/',
+	},
 
 	integrations: [
 		starlight({
 			title: 'Prospect',
-			description: 'Le launcher d’instances pour Vintage Story, inspiré de Prism Launcher.',
+			description: 'The instance launcher for Vintage Story, in the spirit of Prism Launcher.',
 			logo: {
 				src: './src/assets/logo.svg',
 				alt: 'Prospect',
 			},
 			favicon: '/favicon.png',
 
-			// Français à la racine dès aujourd'hui. Pour ajouter l'anglais plus tard :
-			// déclarer `en: { label: 'English', lang: 'en' }` ci-dessous et créer les
-			// pages correspondantes sous src/content/docs/en/ (même structure de
-			// fichiers que la racine française).
+			// Anglais à la racine (portée internationale, comme le README du launcher),
+			// français complet sous /fr/ : la voix d'origine du produit.
 			defaultLocale: 'root',
 			locales: {
-				root: { label: 'Français', lang: 'fr' },
+				root: { label: 'English', lang: 'en' },
+				fr: { label: 'Français', lang: 'fr' },
 			},
 
 			social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/Pixnop/Prospect' }],
@@ -35,25 +45,35 @@ export default defineConfig({
 
 			sidebar: [
 				{
-					label: 'Démarrer',
-					items: [{ label: 'Premiers pas', slug: 'premiers-pas' }],
+					label: 'Start',
+					translations: { fr: 'Démarrer' },
+					items: [{ label: 'Getting started', translations: { fr: 'Premiers pas' }, slug: 'getting-started' }],
 				},
 				{
-					label: 'Utiliser Prospect',
+					label: 'Using Prospect',
+					translations: { fr: 'Utiliser Prospect' },
 					items: [
-						{ label: 'Les instances', slug: 'instances' },
-						{ label: 'Les versions du jeu', slug: 'versions' },
-						{ label: 'Les mods', slug: 'mods' },
-						{ label: 'Les modpacks', slug: 'modpacks' },
+						{ label: 'Instances', translations: { fr: 'Les instances' }, slug: 'instances' },
+						{ label: 'Game versions', translations: { fr: 'Les versions du jeu' }, slug: 'game-versions' },
+						{ label: 'Mods', translations: { fr: 'Les mods' }, slug: 'mods' },
+						{ label: 'Modpacks', translations: { fr: 'Les modpacks' }, slug: 'modpacks' },
 					],
 				},
 				{
 					label: 'Migration',
-					items: [{ label: 'Migrer depuis VS Launcher', slug: 'migration-vslauncher' }],
+					translations: { fr: 'Migration' },
+					items: [
+						{
+							label: 'Migrate from VS Launcher',
+							translations: { fr: 'Migrer depuis VS Launcher' },
+							slug: 'migrate-from-vs-launcher',
+						},
+					],
 				},
 				{
-					label: 'Aide',
-					items: [{ label: 'FAQ', slug: 'faq' }],
+					label: 'Help',
+					translations: { fr: 'Aide' },
+					items: [{ label: 'FAQ', translations: { fr: 'FAQ' }, slug: 'faq' }],
 				},
 			],
 		}),
