@@ -63,7 +63,7 @@ export const en: LandingStrings = {
 			'The launcher that digs in the right place: one instance per world, game versions side by side, the official ModDB built in. In the spirit of Prism Launcher.',
 		github: 'View on GitHub',
 		docs: 'Read the docs',
-		status: 'Developed in the open · no release yet',
+		status: 'Developed in the open · pre-release available',
 	},
 	features: {
 		eyebrow: 'Features',
@@ -132,10 +132,10 @@ export const en: LandingStrings = {
 		],
 	},
 	download: {
-		badge: 'Early development',
+		badge: 'Pre-release',
 		title: 'Download',
-		body: 'There is no Prospect release yet: no installer, no ready-to-run build. The project is developed in the open (the screenshots above come from its current working builds), and until a first release the way to run Prospect is to build it from source, in a few commands.',
-		github: 'View on GitHub',
+		body: 'The first pre-release is out: a Linux archive (tar.gz, with a ready-to-run Prospect binary) and a Windows archive (zip), with SHA-256 sums alongside. The Windows binary is not code-signed yet, so SmartScreen will call it an unknown publisher: choose "More info", then "Run anyway". Building from source remains an option.',
+		github: 'Download the pre-release',
 		build: 'Build from source',
 	},
 	footer: {
@@ -161,7 +161,7 @@ export const fr: LandingStrings = {
 			'Le launcher qui creuse au bon endroit : une instance par monde, les versions du jeu côte à côte, le ModDB officiel intégré. Dans l’esprit de Prism Launcher.',
 		github: 'Voir sur GitHub',
 		docs: 'Lire la documentation',
-		status: 'Développé à ciel ouvert · pas encore de version publiée',
+		status: 'Développé à ciel ouvert · pré-release disponible',
 	},
 	features: {
 		eyebrow: 'Fonctionnalités',
@@ -230,10 +230,10 @@ export const fr: LandingStrings = {
 		],
 	},
 	download: {
-		badge: 'Développement précoce',
+		badge: 'Pré-release',
 		title: 'Télécharger',
-		body: 'Il n’y a pas encore de version de Prospect à télécharger : ni installeur, ni build prêt à l’emploi. Le projet avance à ciel ouvert (les captures ci-dessus viennent de ses builds de travail), et en attendant une première version, la façon de lancer Prospect est de le compiler depuis les sources, en quelques commandes.',
-		github: 'Voir sur GitHub',
+		body: 'La première pré-release est en ligne : une archive Linux (tar.gz, binaire Prospect prêt à lancer) et une archive Windows (zip), sommes SHA-256 fournies à côté. Le binaire Windows n’est pas encore signé : SmartScreen parlera d’un éditeur inconnu, passe par « Informations complémentaires » puis « Exécuter quand même ». Compiler depuis les sources reste possible.',
+		github: 'Télécharger la pré-release',
 		build: 'Compiler depuis les sources',
 	},
 	footer: {

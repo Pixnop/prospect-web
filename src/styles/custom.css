@@ -1007,3 +1007,19 @@ a.card,
 	width: 16px;
 	height: 16px;
 }
+
+/* ────────────────────────────────────────────────────────────────────────
+   8. Doc en fenêtre étroite : rien ne déborde de son cadre.
+   Sur mobile, les tables (celle de la migration en tête) doivent défiler
+   DANS leur conteneur au lieu de pousser sous le bord de l'écran, et les
+   longs chemins en code inline doivent pouvoir se couper. Les blocs de
+   code (pre) gardent leur propre défilement horizontal, on n'y touche pas.
+   ──────────────────────────────────────────────────────────────────────── */
+.sl-markdown-content table {
+	display: block;
+	max-width: 100%;
+	overflow-x: auto;
+}
+.sl-markdown-content :not(pre) > code {
+	overflow-wrap: anywhere;
+}

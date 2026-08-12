@@ -3,11 +3,22 @@ title: Premiers pas
 description: Compiler et lancer Prospect depuis les sources.
 ---
 
-Prospect est encore en développement précoce. Il n'y a pas de version publiée à
-télécharger pour l'instant : la seule façon de le lancer aujourd'hui, c'est de le
-compiler soi-même.
+Prospect est en développement précoce, mais une première pré-release est
+disponible : tu peux la télécharger, ou compiler toi-même.
 
-## Prérequis
+## Télécharger la pré-release
+
+La [page des releases](https://github.com/Pixnop/Prospect/releases/latest) fournit
+une archive Linux (`prospect-<version>-linux-x64.tar.gz`, binaire `Prospect` prêt à
+lancer après extraction) et une archive Windows (`prospect-<version>-win-x64.zip`,
+`Prospect.exe`), avec les sommes SHA-256 à côté.
+
+Sur Windows, le binaire n'est pas encore signé : SmartScreen affichera « éditeur
+inconnu ». Passe par « Informations complémentaires », puis « Exécuter quand
+même ». Pas d'installeur ni de mise à jour automatique pour l'instant : une
+nouvelle version se télécharge au même endroit.
+
+## Prérequis (compilation)
 
 Il faut le **.NET 10 SDK** installé sur ta machine. Vérifie ta version avec :
 
