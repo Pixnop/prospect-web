@@ -29,6 +29,8 @@ export interface LandingStrings {
 		eyebrow: string;
 		title: string;
 		lead: string;
+		zoom: string;
+		close: string;
 		items: { src: string; caption: string; alt: string }[];
 	};
 	download: {
@@ -98,7 +100,9 @@ export const en: LandingStrings = {
 	gallery: {
 		eyebrow: 'On screen',
 		title: 'The interface',
-		lead: 'Five screens, captured from the current working builds. The theme is mined from the same vein as the game: copper, stone, linen.',
+		lead: 'Five screens, captured from the current working builds in both themes. The theme is mined from the same vein as the game: copper, stone, linen.',
+		zoom: 'View full size:',
+		close: 'Close',
 		items: [
 			{
 				src: 'accueil.png',
@@ -194,7 +198,9 @@ export const fr: LandingStrings = {
 	gallery: {
 		eyebrow: 'En images',
 		title: 'L’interface',
-		lead: 'Cinq écrans, capturés sur les builds de travail. Le thème sort du même filon que le jeu : cuivre, pierre, lin.',
+		lead: 'Cinq écrans, capturés sur les builds de travail, dans les deux thèmes. Le thème sort du même filon que le jeu : cuivre, pierre, lin.',
+		zoom: 'Voir en grand :',
+		close: 'Fermer',
 		items: [
 			{
 				src: 'accueil.png',

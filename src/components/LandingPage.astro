@@ -154,20 +154,54 @@ const alternateFr = `${alternateEn}fr/`;
 					<div class="pr-gallery">
 						{
 							t.gallery.items.map((shot) => (
-								<figure class="pr-card">
-									<img
-										src={`${base}screenshots/${shot.src}`}
-										alt={shot.alt}
-										loading="lazy"
-										decoding="async"
-										width="1160"
-										height="780"
-									/>
+								<figure class="pr-card pr-shot">
+									<button
+										class="pr-shot__button"
+										type="button"
+										aria-label={`${t.gallery.zoom} ${shot.caption}`}
+										data-caption={shot.caption}
+										data-dark={`${base}screenshots/${shot.src}`}
+										data-light={`${base}screenshots/${shot.src.replace(/\.png$/, '-light.png')}`}
+									>
+										<img
+											class="pr-shot__img pr-shot__img--dark"
+											src={`${base}screenshots/${shot.src}`}
+											alt={shot.alt}
+											loading="lazy"
+											decoding="async"
+											width="1160"
+											height="780"
+										/>
+										<img
+											class="pr-shot__img pr-shot__img--light"
+											src={`${base}screenshots/${shot.src.replace(/\.png$/, '-light.png')}`}
+											alt={shot.alt}
+											loading="lazy"
+											decoding="async"
+											width="1160"
+											height="780"
+										/>
+									</button>
 									<figcaption>{shot.caption}</figcaption>
 								</figure>
 							))
 						}
 					</div>
+					<dialog id="pr-lightbox" class="pr-lightbox" aria-label={t.gallery.title}>
+						<button id="pr-lightbox-close" class="pr-lightbox__close" type="button" aria-label={t.gallery.close}>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.75"
+								stroke-linecap="round"
+								aria-hidden="true"><path d="M18 6 6 18M6 6l12 12" /></svg
+							>
+						</button>
+						<img class="pr-shot__img pr-shot__img--dark" alt="" />
+						<img class="pr-shot__img pr-shot__img--light" alt="" />
+						<p class="pr-overline pr-lightbox__caption"></p>
+					</dialog>
 				</div>
 			</section>
 
@@ -205,6 +239,36 @@ const alternateFr = `${alternateEn}fr/`;
 			</div>
 		</footer>
 		<script is:inline>
+			// Lightbox de la galerie : chaque capture s'ouvre en grand dans le <dialog> natif,
+			// avec ses deux variantes de thème (le CSS n'affiche que celle du thème courant).
+			(function () {
+				var lightbox = document.getElementById('pr-lightbox');
+				var caption = lightbox.querySelector('.pr-lightbox__caption');
+				var darkImg = lightbox.querySelector('.pr-shot__img--dark');
+				var lightImg = lightbox.querySelector('.pr-shot__img--light');
+
+				document.querySelectorAll('.pr-shot__button').forEach(function (button) {
+					button.addEventListener('click', function () {
+						darkImg.src = button.dataset.dark;
+						lightImg.src = button.dataset.light;
+						darkImg.alt = button.dataset.caption;
+						lightImg.alt = button.dataset.caption;
+						caption.textContent = button.dataset.caption;
+						lightbox.showModal();
+					});
+				});
+
+				document.getElementById('pr-lightbox-close').addEventListener('click', function () {
+					lightbox.close();
+				});
+				// Clic sur le voile (la zone du dialog hors de son contenu) : fermeture.
+				lightbox.addEventListener('click', function (event) {
+					if (event.target === lightbox) {
+						lightbox.close();
+					}
+				});
+			})();
+
 			// L'interrupteur de thème de la landing écrit la même clé que le sélecteur de la
 			// documentation : les deux surfaces restent d'accord, dans les deux sens.
 			document.getElementById('pr-theme-toggle').addEventListener('click', function () {
