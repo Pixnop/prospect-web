@@ -1,35 +1,34 @@
 ---
-title: Les instances
-description: Une instance isole une version du jeu, ses mods et ses mondes.
+title: Instances
+description: An instance isolates one game version, its mods and its worlds.
 ---
 
-Une instance rassemble une version du jeu, ses mods, ses mondes et ses réglages
-dans un dossier isolé. Deux instances ne se marchent jamais dessus : tu peux garder
-une instance de survie tranquille en `1.21.3` à côté d'une instance de test en
-`1.22.0-rc.1`, avec des mods différents dans chacune.
+An instance gathers a game version, its mods, its worlds and its settings in one
+isolated folder. Two instances never step on each other: you can keep a quiet
+survival world on `1.21.3` next to a test bench on `1.22.0-rc.1`, each with its
+own mods.
 
-## Créer une instance
+## Creating an instance
 
-La création passe par un assistant en quatre étapes : nom, version du jeu, icône,
-puis résumé avant validation. Le nom donne aussi le nom du dossier (par exemple
-`Survie Vintage` devient le dossier `instances/survie-vintage`).
+Creation goes through a four-step wizard: name, game version, icon, then a
+summary before confirming. The name also names the folder (`Vintage Survival`
+becomes the `instances/vintage-survival` folder, for instance).
 
-## Où vivent tes données
+## Where your data lives
 
-Chaque instance a son propre sous-dossier `data/`, celui que le jeu voit et dans
-lequel il écrit ses mondes, ses configurations et ses mods. Sur Linux, par exemple :
+Each instance has its own `data/` subfolder, the one the game sees and writes
+its worlds, configuration and mods into. On Linux, for example:
 
 ```
-~/.local/share/prospect/instances/<nom-instance>/data/
+~/.local/share/prospect/instances/<instance-name>/data/
 ```
 
-Les mondes sont dans `data/Saves/`, les mods dans `data/Mods/`. Les métadonnées
-propres à Prospect (nom, date de création, temps de jeu) restent à côté de `data/`,
-jamais dedans : le jeu peut écrire librement sans jamais entrer en collision avec
-elles.
+Worlds live in `data/Saves/`, mods in `data/Mods/`. Prospect's own metadata
+(name, creation date, playtime) sits next to `data/`, never inside it: the game
+can write freely without ever colliding with it.
 
-## Dupliquer une instance
+## Duplicating an instance
 
-Dupliquer une instance copie tout son dossier `data/` sous un nouveau nom : mondes,
-configurations et mods compris. C'est la façon la plus simple de tester un mod
-risqué ou une nouvelle version sans toucher à une partie en cours.
+Duplicating an instance copies its whole `data/` folder under a new name:
+worlds, configuration and mods included. It is the simplest way to try a risky
+mod or a new game version without touching a world you care about.
