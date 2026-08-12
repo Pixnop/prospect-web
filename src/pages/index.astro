@@ -1,0 +1,66 @@
+---
+import '../styles/fonts.css';
+import '../styles/custom.css';
+import TopBar from '../components/TopBar.astro';
+import Hero from '../components/Hero.astro';
+import Features from '../components/Features.astro';
+import Gallery from '../components/Gallery.astro';
+import DownloadSection from '../components/DownloadSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const title = 'Prospect : le launcher d’instances pour Vintage Story';
+const description =
+	'Prospect isole chaque instance de Vintage Story (version, mods, mondes), installe plusieurs versions du jeu côte à côte et intègre le ModDB officiel. Inspiré de Prism Launcher.';
+---
+
+<html lang="fr">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="icon" href={`${base}favicon.png`} type="image/png" />
+		<meta name="generator" content={Astro.generator} />
+	</head>
+	<body class="pr-landing">
+		<TopBar />
+		<main>
+			<Hero />
+
+			<section class="pr-section" id="fonctionnalites" aria-labelledby="fonctionnalites-titre">
+				<div class="pr-shell">
+					<div class="pr-section__head">
+						<span class="pr-overline pr-section__eyebrow">Fonctionnalités</span>
+						<h2 class="pr-section__title" id="fonctionnalites-titre">
+							Ce que fait Prospect aujourd’hui
+						</h2>
+						<p class="pr-section__lead">
+							Les cinq fonctionnalités du MVP, pensées pour remplacer VS Launcher sans en reprendre
+							les manques.
+						</p>
+					</div>
+					<Features />
+				</div>
+			</section>
+
+			<section class="pr-section pr-section--alt" id="captures" aria-labelledby="captures-titre">
+				<div class="pr-shell">
+					<div class="pr-section__head">
+						<span class="pr-overline pr-section__eyebrow">En images</span>
+						<h2 class="pr-section__title" id="captures-titre">L’interface</h2>
+						<p class="pr-section__lead">Cinq écrans du launcher, pris sur la version en développement.</p>
+					</div>
+					<Gallery />
+				</div>
+			</section>
+
+			<section class="pr-section" id="telecharger" aria-labelledby="telecharger-titre">
+				<div class="pr-shell">
+					<DownloadSection />
+				</div>
+			</section>
+		</main>
+		<SiteFooter />
+	</body>
+</html>

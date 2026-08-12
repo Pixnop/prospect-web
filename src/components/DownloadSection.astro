@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<div class="pr-card pr-download">
+	<span class="pr-badge pr-download__badge">En développement précoce</span>
+	<h2 class="pr-section__title" id="telecharger-titre">Télécharger</h2>
+	<p>
+		Il n’y a pas encore de version de Prospect à télécharger : ni installeur, ni build prêt à
+		l’emploi. Le projet avance à ciel ouvert (les captures ci-dessus viennent des builds de
+		travail actuels), mais en attendant une première version, la seule façon de lancer Prospect
+		est de compiler le code source, public, en quelques commandes.
+	</p>
+	<div class="pr-download__actions">
+		<a class="pr-btn pr-btn--primary" href="https://github.com/Pixnop/Prospect">
+			<Icon name="externalLink" size={16} />
+			Voir sur GitHub
+		</a>
+		<a class="pr-btn pr-btn--secondary" href={`${base}premiers-pas/`}>
+			<Icon name="download" size={16} />
+			Compiler depuis les sources
+		</a>
+	</div>
+</div>

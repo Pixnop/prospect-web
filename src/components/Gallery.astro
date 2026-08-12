@@ -1,0 +1,42 @@
+---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+const shots = [
+	{
+		src: 'accueil.png',
+		caption: 'Accueil : liste des instances',
+		alt: "Liste des instances de Prospect, avec leur version de jeu et le bouton Jouer.",
+	},
+	{
+		src: 'instance-mods.png',
+		caption: "Détail d'une instance : onglet Mods",
+		alt: "Détail d'une instance, onglet Mods, avec la liste des mods installés et leurs interrupteurs d'activation.",
+	},
+	{
+		src: 'navigateur-moddb.png',
+		caption: 'Navigateur de mods (ModDB)',
+		alt: 'Navigateur de mods connecté au ModDB officiel, avec recherche et filtres par tag.',
+	},
+	{
+		src: 'versions.png',
+		caption: 'Versions du jeu',
+		alt: "Écran Versions du jeu listant les versions installées et disponibles, avec leur canal et leur taille.",
+	},
+	{
+		src: 'wizard-instance.png',
+		caption: "Assistant de création d'instance",
+		alt: "Première étape de l'assistant de création d'une instance, saisie du nom.",
+	},
+];
+---
+
+<div class="pr-gallery">
+	{
+		shots.map((shot) => (
+			<figure class="pr-card">
+				<img src={`${base}screenshots/${shot.src}`} alt={shot.alt} loading="lazy" decoding="async" width="1160" height="780" />
+				<figcaption>{shot.caption}</figcaption>
+			</figure>
+		))
+	}
+</div>

@@ -1,0 +1,26 @@
+---
+import Icon from './Icon.astro';
+import logoMark from '../assets/logo.svg?raw';
+
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+---
+
+<section class="pr-hero">
+	<div class="pr-shell">
+		<div class="pr-hero__logo" set:html={logoMark} />
+		<h1 class="pr-hero__title">Prospect</h1>
+		<p class="pr-hero__tagline">
+			Le launcher d’instances pour Vintage Story, dans l’esprit de Prism Launcher. Chaque monde dans
+			son instance, chaque version du jeu installée côte à côte, les mods gérés depuis le ModDB
+			officiel.
+		</p>
+		<div class="pr-hero__actions">
+			<a class="pr-btn pr-btn--primary" href="https://github.com/Pixnop/Prospect">
+				<Icon name="externalLink" size={16} />
+				Voir sur GitHub
+			</a>
+			<a class="pr-btn pr-btn--secondary" href={`${base}premiers-pas/`}>Lire la documentation</a>
+		</div>
+		<p class="pr-hero__status pr-overline">En développement précoce, pas encore de version publiée</p>
+	</div>
+</section>

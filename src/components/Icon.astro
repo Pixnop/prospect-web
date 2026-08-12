@@ -1,0 +1,42 @@
+---
+/**
+ * Port direct du composant Icon de l'application (Lucide, MIT, voir
+ * readme.md du design system, section Iconography). Seuls les tracés
+ * réellement utilisés par la landing sont repris ici.
+ */
+interface Props {
+	name: keyof typeof PATHS;
+	size?: number;
+}
+
+const PATHS = {
+	layers:
+		'm12.83 2.18 8.34 4.17a1 1 0 0 1 0 1.79l-8.34 4.17a2 2 0 0 1-1.66 0L2.83 8.14a1 1 0 0 1 0-1.79l8.34-4.17a2 2 0 0 1 1.66 0zM2.83 15.86l8.34 4.17a2 2 0 0 0 1.66 0l8.34-4.17M2.83 11.86l8.34 4.17a2 2 0 0 0 1.66 0l8.34-4.17',
+	hardDrive:
+		'M22 12H2M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11zM6 16h.01M10 16h.01',
+	play: 'M6 3l14 9-14 9z',
+	package:
+		'M16.5 9.4 7.5 4.21M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16zM3.27 6.96 12 12.01l8.73-5.05M12 22.08V12',
+	upload: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12',
+	download: 'M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3',
+	externalLink: 'M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6',
+} satisfies Record<string, string>;
+
+const { name, size = 18 } = Astro.props;
+const d = PATHS[name];
+const segments = d.split('M').filter(Boolean);
+---
+
+<svg
+	width={size}
+	height={size}
+	viewBox="0 0 24 24"
+	fill="none"
+	stroke="currentColor"
+	stroke-width="1.75"
+	stroke-linecap="round"
+	stroke-linejoin="round"
+	aria-hidden="true"
+>
+	{segments.map((seg) => <path d={'M' + seg} />)}
+</svg>
