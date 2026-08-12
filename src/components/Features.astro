@@ -1,0 +1,45 @@
+---
+import Icon from './Icon.astro';
+
+const features = [
+	{
+		icon: 'layers' as const,
+		title: 'Instances isolées',
+		text: 'Chaque instance a sa propre version du jeu, ses propres mods et ses propres mondes, dans un dossier séparé. Une instance de survie stable et une instance de test en unstable ne se marchent jamais dessus.',
+	},
+	{
+		icon: 'hardDrive' as const,
+		title: 'Versions côte à côte',
+		text: "Les versions de Vintage Story s'installent indépendamment les unes des autres, stable ou unstable. Plusieurs instances peuvent partager la même version installée sans rien retélécharger.",
+	},
+	{
+		icon: 'play' as const,
+		title: 'Lancement avec détection du runtime',
+		text: "Prospect vérifie que le runtime .NET requis par la version choisie est présent avant de lancer le jeu, et indique précisément quoi installer sinon — plutôt que de laisser deviner.",
+	},
+	{
+		icon: 'package' as const,
+		title: 'ModDB intégré, avec dépendances',
+		text: "Cherche, installe et désinstalle des mods directement depuis le ModDB officiel. Quand un mod a besoin d'un autre mod, Prospect le propose ; il ne l'installe jamais tout seul.",
+	},
+	{
+		icon: 'upload' as const,
+		title: 'Modpacks portables',
+		text: "Exporte la configuration d'une instance dans un modpack — version, mods et leur état activé ou non — pour la partager ou la réimporter ailleurs.",
+	},
+];
+---
+
+<div class="pr-features">
+	{
+		features.map((feature) => (
+			<div class="pr-card pr-feature">
+				<span class="pr-feature__icon">
+					<Icon name={feature.icon} size={20} />
+				</span>
+				<h3>{feature.title}</h3>
+				<p>{feature.text}</p>
+			</div>
+		))
+	}
+</div>

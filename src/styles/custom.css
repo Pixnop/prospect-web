@@ -1,0 +1,730 @@
+/*
+ * Thème Prospect pour Starlight + la landing.
+ *
+ * Ce fichier n'est volontairement dans aucun `@layer` : en cascade CSS, une règle
+ * hors couche l'emporte toujours sur une règle posée dans une couche (Starlight
+ * pose les siennes dans `@layer starlight.*`), donc tout ce qui suit prend le
+ * dessus sans avoir besoin de `!important`.
+ *
+ * Section 1 — tokens bruts du design system (port fidèle de design/tokens/*.css).
+ * Section 2 — pont vers les variables --sl-* de Starlight.
+ * Section 3 — composants réutilisés (boutons, cartes, badges) pour la landing.
+ * Section 4 — mise en page de la landing (hero, fonctionnalités, galerie, etc.).
+ */
+
+/* ────────────────────────────────────────────────────────────────────────
+   1. Tokens — rampes, sémantiques, typo, espacement, radii, élévation, motion
+   ──────────────────────────────────────────────────────────────────────── */
+
+:root {
+	/* Rampe stone — neutres chauds, jamais de noir pur. */
+	--stone-950: #111010;
+	--stone-900: #171513;
+	--stone-850: #1d1a18;
+	--stone-800: #24211e;
+	--stone-750: #2b2724;
+	--stone-700: #332e29;
+	--stone-600: #443d36;
+	--stone-500: #5b5249;
+	--stone-400: #7e756b;
+	--stone-300: #b3a99e;
+	--stone-200: #d5ccc2;
+	--stone-100: #ede6dd;
+	--stone-050: #f7f2eb;
+
+	/* Copper — accent unique, tiré du logo. */
+	--copper-200: #f0d2b4;
+	--copper-300: #e3b489;
+	--copper-400: #d5a275;
+	--copper-500: #c4854f;
+	--copper-600: #a56c3e;
+	--copper-700: #7e5230;
+	--copper-800: #563723;
+	--copper-900: #2e211a;
+
+	/* Clay — danger. */
+	--clay-300: #e0836f;
+	--clay-400: #d0604a;
+	--clay-500: #c1503b;
+	--clay-600: #a34131;
+	--clay-700: #6e2a20;
+	--clay-900: #2c1613;
+
+	/* Verdigris — succès, à jour, installé. */
+	--verdigris-300: #8fc4af;
+	--verdigris-400: #7dbba4;
+	--verdigris-500: #5e9c86;
+	--verdigris-600: #4a7e6b;
+	--verdigris-900: #14231e;
+
+	/* Ochre — avertissement, canal unstable. */
+	--ochre-300: #e9c583;
+	--ochre-400: #e0b662;
+	--ochre-500: #d9a441;
+	--ochre-600: #b08331;
+	--ochre-900: #2a2011;
+
+	/* Slate — information, canal pre-release. */
+	--slate-300: #afc0d2;
+	--slate-400: #9aaec4;
+	--slate-500: #7c93ae;
+	--slate-600: #61748c;
+	--slate-900: #161a20;
+
+	/* Alias sémantiques — thème sombre, celui par défaut. */
+	--bg-window: var(--stone-950);
+	--bg-sidebar: #141211;
+	--bg-surface: var(--stone-900);
+	--bg-surface-raised: var(--stone-850);
+	--bg-input: var(--stone-850);
+	--bg-input-hover: #221f1c;
+	--bg-hover: rgba(213, 162, 117, 0.07);
+	--bg-active: rgba(213, 162, 117, 0.12);
+	--bg-selected: rgba(213, 162, 117, 0.14);
+	--bg-scrim: rgba(9, 8, 8, 0.62);
+
+	--text-1: var(--stone-100);
+	--text-2: var(--stone-300);
+	--text-3: var(--stone-400);
+	--text-4: var(--stone-500);
+	--text-on-accent: #1a1512;
+	--text-link: var(--copper-300);
+	--text-link-hover: var(--copper-200);
+
+	--border-subtle: var(--stone-800);
+	--border-default: var(--stone-700);
+	--border-strong: var(--stone-600);
+	--border-focus: var(--copper-400);
+
+	--accent: var(--copper-500);
+	--accent-hover: var(--copper-400);
+	--accent-pressed: var(--copper-600);
+	--accent-disabled: #4a3a2c;
+	--accent-text: var(--copper-300);
+	--accent-quiet: rgba(213, 162, 117, 0.14);
+
+	--danger: var(--clay-500);
+	--danger-hover: var(--clay-400);
+	--danger-pressed: var(--clay-600);
+	--danger-text: var(--clay-300);
+	--danger-quiet: rgba(193, 80, 59, 0.16);
+
+	--success: var(--verdigris-500);
+	--success-text: var(--verdigris-400);
+	--success-quiet: rgba(94, 156, 134, 0.16);
+
+	--warning: var(--ochre-500);
+	--warning-text: var(--ochre-400);
+	--warning-quiet: rgba(217, 164, 65, 0.16);
+
+	--info: var(--slate-500);
+	--info-text: var(--slate-400);
+	--info-quiet: rgba(124, 147, 174, 0.16);
+
+	--scrollbar-track: transparent;
+	--scrollbar-thumb: var(--stone-700);
+	--scrollbar-thumb-hover: var(--stone-600);
+
+	--channel-stable: var(--verdigris-500);
+	--channel-unstable: var(--ochre-500);
+	--channel-pre: var(--slate-500);
+	--channel-incompatible: var(--clay-500);
+
+	/* Typo */
+	--font-ui: 'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+	--font-mono: 'IBM Plex Mono', 'Cascadia Mono', ui-monospace, monospace;
+	--font-display: 'Space Grotesk', 'IBM Plex Sans', sans-serif;
+
+	--fw-regular: 400;
+	--fw-medium: 500;
+	--fw-semibold: 600;
+	--fw-bold: 700;
+
+	/* Espacement — grille 4px */
+	--space-1: 2px;
+	--space-2: 4px;
+	--space-3: 6px;
+	--space-4: 8px;
+	--space-5: 12px;
+	--space-6: 16px;
+	--space-7: 20px;
+	--space-8: 24px;
+	--space-9: 32px;
+	--space-10: 40px;
+	--space-11: 48px;
+	--space-12: 64px;
+	--control-h-sm: 26px;
+	--control-h-md: 32px;
+	--control-h-lg: 38px;
+	--control-px-sm: 10px;
+	--control-px-md: 14px;
+	--control-px-lg: 18px;
+	--card-pad: 16px;
+
+	/* Radii */
+	--radius-xs: 3px;
+	--radius-sm: 6px;
+	--radius-md: 10px;
+	--radius-lg: 14px;
+	--radius-pill: 999px;
+
+	/* Élévation — une ombre douce + une bordure un cran plus claire */
+	--elev-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+	--elev-2: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.28);
+	--elev-3: 0 2px 4px rgba(0, 0, 0, 0.45), 0 16px 40px rgba(0, 0, 0, 0.38);
+	--focus-ring: 0 0 0 2px var(--bg-window), 0 0 0 4px var(--copper-500);
+
+	/* Motion */
+	--dur-instant: 80ms;
+	--dur-fast: 140ms;
+	--dur-normal: 220ms;
+	--ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+	--ease-out: cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* Variante claire — suit la bascule de thème de Starlight (voir section 2). */
+:root[data-theme='light'] {
+	--bg-window: #efe9e1;
+	--bg-sidebar: #e6dfd5;
+	--bg-surface: #f7f2eb;
+	--bg-surface-raised: #ffffff;
+	--bg-input: #ffffff;
+	--bg-hover: rgba(126, 82, 48, 0.06);
+	--bg-active: rgba(126, 82, 48, 0.1);
+	--bg-selected: rgba(126, 82, 48, 0.12);
+	--bg-scrim: rgba(40, 32, 26, 0.35);
+
+	--text-1: #231e1a;
+	--text-2: #5b5249;
+	--text-3: #7e756b;
+	--text-4: #a2988d;
+	--text-on-accent: #fff8f1;
+	--text-link: var(--copper-700);
+	--text-link-hover: var(--copper-800);
+
+	--border-subtle: #dcd3c7;
+	--border-default: #cbc0b2;
+	--border-strong: #b2a594;
+	--border-focus: var(--copper-600);
+
+	--accent: var(--copper-600);
+	--accent-hover: var(--copper-500);
+	--accent-pressed: var(--copper-700);
+	--accent-disabled: #dccbb8;
+	--accent-text: var(--copper-700);
+	--accent-quiet: rgba(165, 108, 62, 0.12);
+
+	--danger-text: var(--clay-600);
+	--danger-quiet: rgba(193, 80, 59, 0.12);
+	--success: var(--verdigris-600);
+	--success-text: var(--verdigris-600);
+	--success-quiet: rgba(74, 126, 107, 0.12);
+	--warning: var(--ochre-600);
+	--warning-text: var(--ochre-600);
+	--warning-quiet: rgba(176, 131, 49, 0.14);
+	--info: var(--slate-600);
+	--info-text: var(--slate-600);
+	--info-quiet: rgba(97, 116, 140, 0.12);
+
+	--scrollbar-thumb: #cbc0b2;
+	--scrollbar-thumb-hover: #b2a594;
+
+	--elev-1: 0 1px 2px rgba(56, 42, 30, 0.1);
+	--elev-2: 0 1px 2px rgba(56, 42, 30, 0.1), 0 8px 24px rgba(56, 42, 30, 0.1);
+	--elev-3: 0 2px 4px rgba(56, 42, 30, 0.12), 0 16px 40px rgba(56, 42, 30, 0.16);
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   2. Pont vers les variables Starlight (--sl-*)
+   ──────────────────────────────────────────────────────────────────────── */
+
+:root,
+::backdrop {
+	--sl-color-white: var(--stone-100);
+	--sl-color-gray-1: var(--stone-200);
+	--sl-color-gray-2: var(--stone-300);
+	--sl-color-gray-3: var(--stone-400);
+	--sl-color-gray-4: var(--stone-500);
+	--sl-color-gray-5: var(--stone-700);
+	--sl-color-gray-6: var(--stone-850);
+	--sl-color-black: var(--stone-950);
+
+	--sl-color-accent-low: var(--copper-800);
+	--sl-color-accent: var(--copper-500);
+	--sl-color-accent-high: var(--copper-300);
+
+	--sl-color-text: var(--stone-300);
+	--sl-color-text-accent: var(--copper-300);
+	--sl-color-bg: var(--bg-window);
+	--sl-color-bg-nav: var(--bg-sidebar);
+	--sl-color-bg-sidebar: var(--bg-sidebar);
+	--sl-color-bg-inline-code: var(--stone-850);
+	--sl-color-hairline-light: var(--stone-700);
+	--sl-color-hairline: var(--stone-800);
+	--sl-color-hairline-shade: var(--stone-950);
+	--sl-color-backdrop-overlay: var(--bg-scrim);
+
+	/* Admonitions : note = slate, tip = verdigris, caution = ochre, danger = clay. */
+	--sl-color-blue: var(--slate-500);
+	--sl-color-blue-high: var(--slate-300);
+	--sl-color-blue-low: var(--slate-900);
+	--sl-color-purple: var(--verdigris-500);
+	--sl-color-purple-high: var(--verdigris-300);
+	--sl-color-purple-low: var(--verdigris-900);
+	--sl-color-orange: var(--ochre-500);
+	--sl-color-orange-high: var(--ochre-300);
+	--sl-color-orange-low: var(--ochre-900);
+	--sl-color-red: var(--clay-500);
+	--sl-color-red-high: var(--clay-300);
+	--sl-color-red-low: var(--clay-900);
+
+	--sl-font: var(--font-ui);
+	--sl-font-mono: var(--font-mono);
+
+	--sl-shadow-sm: var(--elev-1);
+	--sl-shadow-md: var(--elev-2);
+	--sl-shadow-lg: var(--elev-3);
+}
+
+:root[data-theme='light'],
+[data-theme='light'] ::backdrop {
+	--sl-color-gray-1: #5b5249;
+	--sl-color-gray-2: #5b5249;
+	--sl-color-gray-3: #7e756b;
+	--sl-color-gray-4: #a2988d;
+	--sl-color-gray-5: #cbc0b2;
+	--sl-color-gray-6: #f7f2eb;
+	--sl-color-gray-7: #ffffff;
+	--sl-color-black: #231e1a;
+
+	--sl-color-accent-low: #dccbb8;
+	--sl-color-accent: var(--copper-600);
+	--sl-color-accent-high: var(--copper-800);
+
+	--sl-color-text: #5b5249;
+	--sl-color-text-accent: var(--copper-700);
+	--sl-color-bg: var(--bg-window);
+	--sl-color-bg-nav: var(--bg-sidebar);
+	--sl-color-bg-sidebar: var(--bg-window);
+	--sl-color-bg-inline-code: #f7f2eb;
+	--sl-color-hairline-light: #dcd3c7;
+	--sl-color-hairline-shade: #dcd3c7;
+}
+
+/* Titres et nom du produit en Space Grotesk, jamais le corps de texte. */
+h1,
+.site-title {
+	font-family: var(--font-display);
+	letter-spacing: -0.02em;
+}
+
+/* Radii — un point de détail que Starlight n'expose pas en variables. */
+.starlight-aside {
+	border-radius: var(--radius-md);
+}
+.expressive-code figure,
+.expressive-code .frame {
+	border-radius: var(--radius-md);
+}
+a.card,
+.sl-link-card {
+	border-radius: var(--radius-md);
+}
+.sl-search > button {
+	border-radius: var(--radius-sm);
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   3. Composants — port des classes pr-* du design system (identiques à
+      celles utilisées par l'application), réutilisées sur la landing.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.pr-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-3);
+	font-family: var(--font-ui);
+	font-size: 0.9375rem;
+	font-weight: var(--fw-semibold);
+	line-height: 1;
+	height: var(--control-h-lg);
+	padding: 0 var(--control-px-lg);
+	border-radius: var(--radius-sm);
+	border: 1px solid transparent;
+	cursor: pointer;
+	white-space: nowrap;
+	text-decoration: none !important;
+	transition:
+		background var(--dur-instant) var(--ease-standard),
+		border-color var(--dur-instant) var(--ease-standard),
+		color var(--dur-instant) var(--ease-standard);
+}
+.pr-btn:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+}
+.pr-btn--primary {
+	background: var(--accent);
+	color: var(--text-on-accent) !important;
+}
+.pr-btn--primary:hover {
+	background: var(--accent-hover);
+}
+.pr-btn--primary:active {
+	background: var(--accent-pressed);
+}
+.pr-btn--secondary {
+	background: transparent;
+	border-color: var(--border-strong);
+	color: var(--text-1) !important;
+}
+.pr-btn--secondary:hover {
+	background: var(--bg-hover);
+	border-color: var(--accent);
+}
+.pr-btn--secondary:active {
+	background: var(--bg-active);
+}
+.pr-btn svg {
+	display: block;
+	flex-shrink: 0;
+}
+
+.pr-card {
+	background: var(--bg-surface);
+	border: 1px solid var(--border-subtle);
+	border-radius: var(--radius-md);
+	box-shadow: var(--elev-1);
+	overflow: hidden;
+	transition:
+		border-color var(--dur-fast) var(--ease-standard),
+		box-shadow var(--dur-fast) var(--ease-standard);
+}
+.pr-card--interactive:hover {
+	border-color: var(--border-strong);
+	box-shadow: var(--elev-2);
+}
+
+.pr-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-3);
+	height: 22px;
+	padding: 0 var(--space-6);
+	border-radius: var(--radius-pill);
+	border: 1px solid rgba(213, 162, 117, 0.3);
+	background: var(--accent-quiet);
+	color: var(--accent-text);
+	font-family: var(--font-mono);
+	font-size: var(--fs-micro, 11px);
+	font-weight: var(--fw-medium);
+	line-height: 1;
+	white-space: nowrap;
+}
+
+.pr-overline {
+	font-family: var(--font-mono);
+	font-size: 11px;
+	font-weight: var(--fw-medium);
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--text-3);
+}
+
+.pr-mono {
+	font-family: var(--font-mono);
+	font-variant-numeric: tabular-nums;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+   4. Landing — mise en page propre à la page d'accueil personnalisée.
+   ──────────────────────────────────────────────────────────────────────── */
+
+.pr-landing {
+	background: var(--bg-window);
+	color: var(--text-1);
+	font-family: var(--font-ui);
+	font-size: 16px;
+	line-height: 1.6;
+	color-scheme: dark;
+}
+.pr-landing * {
+	box-sizing: border-box;
+}
+.pr-landing img {
+	max-width: 100%;
+	display: block;
+}
+.pr-landing a {
+	color: var(--text-link);
+}
+.pr-landing a:hover {
+	color: var(--text-link-hover);
+}
+.pr-landing :focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+	border-radius: var(--radius-xs);
+}
+
+.pr-shell {
+	max-width: 1120px;
+	margin-inline: auto;
+	padding-inline: var(--space-8);
+}
+
+/* Barre du haut — reprend la titlebar de l'application : fond bg-sidebar,
+   logo + nom à gauche, liens sobres à droite. */
+.pr-topbar {
+	position: sticky;
+	top: 0;
+	z-index: 20;
+	background: var(--bg-sidebar);
+	border-bottom: 1px solid var(--border-subtle);
+}
+.pr-topbar__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-6);
+	height: 56px;
+}
+.pr-topbar__brand {
+	display: flex;
+	align-items: center;
+	gap: var(--space-5);
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: 1.0625rem;
+	color: var(--text-1) !important;
+	text-decoration: none !important;
+}
+.pr-topbar__brand svg {
+	width: 24px;
+	height: 24px;
+	display: block;
+}
+.pr-topbar__nav {
+	display: flex;
+	align-items: center;
+	gap: var(--space-8);
+	font-size: 0.9375rem;
+}
+.pr-topbar__nav a {
+	color: var(--text-2);
+	text-decoration: none !important;
+	display: inline-flex;
+	align-items: center;
+	gap: var(--space-3);
+}
+.pr-topbar__nav a:hover {
+	color: var(--text-1);
+}
+
+/* Hero */
+.pr-hero {
+	position: relative;
+	overflow: hidden;
+	padding-block: clamp(3.5rem, 8vw, 6.5rem) clamp(3rem, 6vw, 5rem);
+	text-align: center;
+}
+.pr-hero::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background: linear-gradient(160deg, var(--copper-900), var(--stone-850) 65%, var(--bg-window) 100%);
+	opacity: 0.55;
+	mask-image: linear-gradient(to bottom, black, transparent);
+}
+.pr-hero__logo {
+	width: 64px;
+	height: 64px;
+	margin-inline: auto;
+	margin-bottom: var(--space-7);
+}
+.pr-hero__logo svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.pr-hero__title {
+	font-family: var(--font-display);
+	font-weight: 600;
+	font-size: clamp(2.5rem, 6vw, 3.75rem);
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	color: var(--text-1);
+	margin: 0;
+}
+.pr-hero__tagline {
+	max-width: 40rem;
+	margin: var(--space-6) auto 0;
+	font-size: clamp(1.0625rem, 2vw, 1.25rem);
+	line-height: 1.55;
+	color: var(--text-2);
+}
+.pr-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-6);
+	margin-top: var(--space-9);
+}
+.pr-hero__status {
+	margin-top: var(--space-8);
+}
+
+/* Sections génériques */
+.pr-section {
+	padding-block: clamp(3rem, 6vw, 4.5rem);
+}
+.pr-section--alt {
+	background: var(--bg-surface);
+	border-block: 1px solid var(--border-subtle);
+}
+.pr-section__head {
+	max-width: 40rem;
+	margin-bottom: var(--space-10);
+}
+.pr-section__eyebrow {
+	display: block;
+	margin-bottom: var(--space-4);
+}
+.pr-section__title {
+	font-family: var(--font-display);
+	font-size: clamp(1.625rem, 3vw, 2.125rem);
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: var(--text-1);
+	margin: 0;
+}
+.pr-section__lead {
+	margin-top: var(--space-5);
+	color: var(--text-2);
+	font-size: 1.0625rem;
+	line-height: 1.6;
+}
+
+/* Fonctionnalités */
+.pr-features {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(15.5rem, 1fr));
+	gap: var(--space-7);
+}
+.pr-feature {
+	padding: var(--card-pad);
+	display: flex;
+	flex-direction: column;
+	gap: var(--space-5);
+}
+.pr-feature__icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: var(--radius-sm);
+	background: var(--accent-quiet);
+	color: var(--accent-text);
+}
+.pr-feature h3 {
+	margin: 0;
+	font-size: 1.0625rem;
+	font-weight: var(--fw-semibold);
+	color: var(--text-1);
+}
+.pr-feature p {
+	margin: 0;
+	color: var(--text-2);
+	font-size: 0.9375rem;
+	line-height: 1.6;
+}
+
+/* Galerie */
+.pr-gallery {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+	gap: var(--space-7);
+}
+.pr-gallery figure {
+	margin: 0;
+	overflow: hidden;
+}
+.pr-gallery img {
+	width: 100%;
+	height: auto;
+	aspect-ratio: 1160 / 780;
+	object-fit: cover;
+	background: var(--bg-surface);
+}
+.pr-gallery figcaption {
+	padding: var(--space-5) var(--card-pad);
+	font-size: 0.875rem;
+	color: var(--text-3);
+	border-top: 1px solid var(--border-subtle);
+}
+
+/* Téléchargement */
+.pr-download {
+	padding: var(--space-10);
+	text-align: center;
+}
+.pr-download__badge {
+	margin-bottom: var(--space-6);
+}
+.pr-download p {
+	max-width: 34rem;
+	margin: var(--space-5) auto 0;
+	color: var(--text-2);
+	line-height: 1.6;
+}
+.pr-download__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	gap: var(--space-6);
+	margin-top: var(--space-8);
+}
+
+/* Pied de page */
+.pr-footer {
+	border-top: 1px solid var(--border-subtle);
+	padding-block: var(--space-9);
+}
+.pr-footer__inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--space-6);
+}
+.pr-footer p {
+	margin: 0;
+	color: var(--text-3);
+	font-size: 0.875rem;
+}
+.pr-footer a {
+	color: var(--text-3);
+}
+.pr-footer a:hover {
+	color: var(--text-2);
+}
+.pr-footer__links {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--space-8);
+	font-size: 0.875rem;
+}
+
+@media (max-width: 640px) {
+	.pr-shell {
+		padding-inline: var(--space-6);
+	}
+	.pr-topbar__nav {
+		gap: var(--space-6);
+	}
+}
