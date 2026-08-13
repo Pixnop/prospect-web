@@ -1,6 +1,8 @@
 ---
 // La landing complète, paramétrée par sa locale : les deux pages (racine anglaise,
 // /fr/ française) partagent cette structure et ne diffèrent que par leurs chaînes.
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import '../styles/fonts.css';
 import '../styles/custom.css';
 import Icon from './Icon.astro';
@@ -13,6 +15,36 @@ interface Props {
 
 const { t } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+
+// Captures de la galerie : une par langue (l'app parle français ET anglais, chaque landing
+// montre la sienne), servies par le pipeline d'images plutôt que depuis public/. Le fond
+// photographique du thème verre compresse mal en PNG (400 à 800 Ko pièce) ; le pipeline en fait
+// du WebP à ~15-25 % du poids, sans toucher ni au lazy loading ni au mécanisme double-image par
+// thème. Les sources vivent dans src/assets/screenshots/<langue>/, mêmes noms qu'avant.
+const screenshotSources = import.meta.glob<{ default: ImageMetadata }>(
+	'../assets/screenshots/*/*.png',
+	{ eager: true },
+);
+
+/** L'URL optimisée de la capture `fileName` pour la langue de cette landing. */
+async function screenshot(fileName: string): Promise<string> {
+	const key = `../assets/screenshots/${t.lang}/${fileName}`;
+	const source = screenshotSources[key];
+	if (!source) {
+		throw new Error(`Capture absente du bundle : ${key}`);
+	}
+
+	const optimized = await getImage({ src: source.default, format: 'webp', quality: 82 });
+	return optimized.src;
+}
+
+const gallery = await Promise.all(
+	t.gallery.items.map(async (shot) => ({
+		...shot,
+		darkSrc: await screenshot(shot.src),
+		lightSrc: await screenshot(shot.src.replace(/\.png$/, '-light.png')),
+	})),
+);
 const docs = `${base}${t.docsPrefix}`;
 const gettingStarted = `${docs}getting-started/`;
 const twin = `${base}${t.twinPath}`;
@@ -153,19 +185,19 @@ const alternateFr = `${alternateEn}fr/`;
 					</div>
 					<div class="pr-gallery">
 						{
-							t.gallery.items.map((shot) => (
+							gallery.map((shot) => (
 								<figure class="pr-card pr-shot">
 									<button
 										class="pr-shot__button"
 										type="button"
 										aria-label={`${t.gallery.zoom} ${shot.caption}`}
 										data-caption={shot.caption}
-										data-dark={`${base}screenshots/${shot.src}`}
-										data-light={`${base}screenshots/${shot.src.replace(/\.png$/, '-light.png')}`}
+										data-dark={shot.darkSrc}
+										data-light={shot.lightSrc}
 									>
 										<img
 											class="pr-shot__img pr-shot__img--dark"
-											src={`${base}screenshots/${shot.src}`}
+											src={shot.darkSrc}
 											alt={shot.alt}
 											loading="lazy"
 											decoding="async"
@@ -174,7 +206,7 @@ const alternateFr = `${alternateEn}fr/`;
 										/>
 										<img
 											class="pr-shot__img pr-shot__img--light"
-											src={`${base}screenshots/${shot.src.replace(/\.png$/, '-light.png')}`}
+											src={shot.lightSrc}
 											alt={shot.alt}
 											loading="lazy"
 											decoding="async"
