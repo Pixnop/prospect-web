@@ -49,9 +49,11 @@ update and delete.
 ## After a launch, the verdict
 
 The instance's Mods tab reads the [launch log](../logs/) back. A mod that failed carries a
-badge ("3 errors at the last launch") with the offending lines in its tooltip,
-and a mod whose integration with another one resolved says "works with X". And when a mod
-looks for content from another one that is not installed, without declaring it
-as a dependency, the "waiting on content from Y" badge says so: a signal for
-you, never a blocker. A healthy mod shows nothing, which is the ordinary case. Checking for updates
+badge ("3 errors at the last launch") with the offending lines in its tooltip.
+Two other badges wait for nothing: Prospect reads what the archives themselves
+declare, so they are there from the moment a mod is installed. A mod whose
+integration with another installed mod resolved says "works with X", and a mod
+that reaches for content from one that is not installed, without declaring it as
+a dependency, says "expects content from Y": a signal for you, never a blocker.
+A healthy mod shows nothing, which is the ordinary case. Checking for updates
 states its verdict just as plainly, including that everything is up to date.

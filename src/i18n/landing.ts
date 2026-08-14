@@ -88,7 +88,7 @@ export const en: LandingStrings = {
 			{
 				icon: 'package',
 				title: 'The ModDB, dependencies included',
-				text: 'Search the official ModDB, read a mod’s page as its author wrote it, and pick the exact version you install. When a mod needs another one, Prospect proposes it, and never installs anything behind your back.',
+				text: 'Search the official ModDB, read a mod’s page as its author wrote it, and pick the exact version you install. The Mods tab then says what mods expect of each other: “works with Carry On”, or “expects content from” a mod that is missing. When a mod needs another one, Prospect proposes it, and never installs anything behind your back.',
 			},
 			{
 				icon: 'activity',
@@ -111,8 +111,8 @@ export const en: LandingStrings = {
 			},
 			{
 				src: 'instance-mods.png',
-				caption: 'An instance, Mods tab',
-				alt: 'Instance page on its Mods tab: enable toggles and last-launch verdict badges, next to the Worlds, Log and Options tabs',
+				caption: 'An instance, Mods tab (what works with what)',
+				alt: 'Instance page on its Mods tab: three real ModDB mods, Primitive Survival badged “works with Carry On” and Expanded Matter badged “expects content from purposefulstorage”, next to the Worlds, Log and Options tabs',
 			},
 			{
 				src: 'navigateur-moddb.png',
@@ -201,7 +201,7 @@ export const fr: LandingStrings = {
 			{
 				icon: 'package',
 				title: 'Le ModDB, dépendances comprises',
-				text: 'Cherche sur le ModDB officiel, lis la fiche d’un mod telle que son auteur l’a écrite, et choisis la version exacte que tu installes. Quand un mod en réclame un autre, Prospect le propose, et n’installe jamais rien dans ton dos.',
+				text: 'Cherche sur le ModDB officiel, lis la fiche d’un mod telle que son auteur l’a écrite, et choisis la version exacte que tu installes. L’onglet Mods dit ensuite ce que les mods attendent les uns des autres : « fonctionne avec Carry On », ou « attend du contenu de » un mod absent. Quand un mod en réclame un autre, Prospect le propose, et n’installe jamais rien dans ton dos.',
 			},
 			{
 				icon: 'activity',
@@ -224,8 +224,8 @@ export const fr: LandingStrings = {
 			},
 			{
 				src: 'instance-mods.png',
-				caption: 'Une instance, onglet Mods',
-				alt: 'Page d’instance, onglet Mods : interrupteurs d’activation et pastilles de verdict du dernier lancement, à côté des onglets Mondes, Journal et Options',
+				caption: 'Une instance, onglet Mods (qui fonctionne avec qui)',
+				alt: 'Page d’instance, onglet Mods : trois vrais mods du ModDB, Primitive Survival portant la pastille « fonctionne avec Carry On » et Expanded Matter la pastille « attend du contenu de purposefulstorage », à côté des onglets Mondes, Journal et Options',
 			},
 			{
 				src: 'navigateur-moddb.png',
