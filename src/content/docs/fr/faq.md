@@ -36,13 +36,15 @@ Tout vit sous un seul dossier racine, à un emplacement standard selon l'OS :
 - macOS : `~/Library/Application Support/Prospect/`
 
 Les instances sont dans `instances/`, les versions du jeu installées dans
-`versions/`.
+`versions/`, et les journaux de l'application et des lancements dans `logs/`
+(voir [Les journaux](../logs/)).
 
 ## Quelles langues parle Prospect ?
 
 Le français et l'anglais. Le premier démarrage suit la langue de ton système ;
 les Réglages permettent d'en changer, et le choix s'applique au prochain
-démarrage de Prospect.
+démarrage de Prospect. Les autres réglages d'apparence sont décrits dans
+[Personnaliser Prospect](../customize/).
 
 ## C'est quoi une version rc ?
 

@@ -61,6 +61,7 @@ export default defineConfig({
 						{ label: 'Instances', translations: { fr: 'Les instances' }, slug: 'instances' },
 						{ label: 'Game versions', translations: { fr: 'Les versions du jeu' }, slug: 'game-versions' },
 						{ label: 'Mods', translations: { fr: 'Les mods' }, slug: 'mods' },
+						{ label: 'Customize Prospect', translations: { fr: 'Personnaliser Prospect' }, slug: 'customize' },
 					],
 				},
 				{
@@ -77,7 +78,10 @@ export default defineConfig({
 				{
 					label: 'Help',
 					translations: { fr: 'Aide' },
-					items: [{ label: 'FAQ', translations: { fr: 'FAQ' }, slug: 'faq' }],
+					items: [
+						{ label: 'Logs', translations: { fr: 'Les journaux' }, slug: 'logs' },
+						{ label: 'FAQ', translations: { fr: 'FAQ' }, slug: 'faq' },
+					],
 				},
 			],
 		}),

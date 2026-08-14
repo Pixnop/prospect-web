@@ -49,7 +49,7 @@ Launcher, qui ne proposait qu'installer, mettre à jour ou supprimer.
 
 ## Après un lancement, le verdict
 
-L'onglet Mods d'une instance relit le journal de lancement. Un mod qui a échoué
+L'onglet Mods d'une instance relit le [journal de lancement](../logs/). Un mod qui a échoué
 porte une pastille (« 3 erreurs au dernier lancement ») avec les lignes en cause
 dans son infobulle, et un mod dont l'intégration avec un autre a fonctionné dit
 « fonctionne avec X ». Et quand un mod cherche le contenu d'un autre qui n'est
