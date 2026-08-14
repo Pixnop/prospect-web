@@ -9,16 +9,21 @@ export default defineConfig({
 	site: 'https://leonfvt.fr',
 	base: '/prospect-web',
 
-	// Les sept URLs françaises publiées avant l'arrivée de l'anglais redirigent vers
-	// leur nouvelle adresse sous /fr/ (slugs anglais, identiques dans les deux langues).
+	// Les URLs de l'ère française du site (avant l'arrivée de l'anglais) qui ont une
+	// adresse À ELLES redirigent vers leur page sous /fr/. Les autres slugs de cette
+	// époque (instances, mods, faq) sont les mêmes que les slugs anglais actuels : leur
+	// URL appartient à la page anglaise, et une entrée ici la maquillerait en
+	// redirection (une redirection statique bat la route dynamique de Starlight ; c'est
+	// exactement ce qui rendait la FAQ anglaise inaccessible en ligne).
+	// Les pages modpacks ont été retirées avec les écrans du launcher (les modpacks
+	// reviendront) : leurs deux adresses mènent à la réponse de la FAQ, ancre comprise.
 	redirects: {
 		'/premiers-pas/': '/prospect-web/fr/getting-started/',
-		'/instances/': '/prospect-web/fr/instances/',
 		'/versions/': '/prospect-web/fr/game-versions/',
-		'/mods/': '/prospect-web/fr/mods/',
-		'/modpacks/': '/prospect-web/fr/modpacks/',
 		'/migration-vslauncher/': '/prospect-web/fr/migrate-from-vs-launcher/',
-		'/faq/': '/prospect-web/fr/faq/',
+		'/modpacks/': '/prospect-web/faq/#what-about-modpacks',
+		// Le tiret final de l'ancre vient de l'espace française avant « ? » dans le titre.
+		'/fr/modpacks/': '/prospect-web/fr/faq/#et-les-modpacks-',
 	},
 
 	integrations: [
@@ -56,7 +61,6 @@ export default defineConfig({
 						{ label: 'Instances', translations: { fr: 'Les instances' }, slug: 'instances' },
 						{ label: 'Game versions', translations: { fr: 'Les versions du jeu' }, slug: 'game-versions' },
 						{ label: 'Mods', translations: { fr: 'Les mods' }, slug: 'mods' },
-						{ label: 'Modpacks', translations: { fr: 'Les modpacks' }, slug: 'modpacks' },
 					],
 				},
 				{

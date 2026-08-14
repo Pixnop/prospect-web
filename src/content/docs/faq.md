@@ -1,6 +1,6 @@
 ---
 title: FAQ
-description: Account, macOS, data locations and version channels.
+description: Account, macOS, data locations, versions and modpacks.
 ---
 
 ## Can I download Prospect now?
@@ -13,9 +13,11 @@ details, including the SmartScreen note on Windows.
 
 ## Do I need an account?
 
-No, not for anything the MVP covers. Listing and downloading game versions
-requires no vintagestory.at account: it is entirely public. An account only
-becomes useful later, as a multiplayer convenience.
+No. Listing and downloading game versions requires no vintagestory.at account:
+it is entirely public, and playing solo never needs one either. Signing in
+exists for one thing, multiplayer. The sign-in lives in Settings, your session
+is written into each instance at launch, and your password is used once to
+obtain that session, then forgotten: Prospect stores it nowhere.
 
 ## What about macOS?
 
@@ -33,9 +35,23 @@ Everything lives under one root folder, at the standard location for your OS:
 
 Instances live in `instances/`, installed game versions in `versions/`.
 
-## What is the rc channel?
+## Which languages does Prospect speak?
+
+English and French. The first start follows your system language; Settings
+changes it, and the choice applies the next time Prospect starts.
+
+## What is an rc version?
 
 `rc` stands for *release candidate*: a version candidate to become the next
-stable, published on the unstable channel to be tested before the official
-release. You can tell one by its suffix, `1.22.0-rc.1` for example. Nothing
-stops you from installing it next to a stable version, in a separate instance.
+stable, listed among the test versions (with an `unstable` badge) to be tried
+before the official one. You can tell one by its suffix, `1.22.0-rc.1` for
+example. Nothing stops you from installing it next to a stable version, in a
+separate instance.
+
+## What about modpacks?
+
+The export and import screens have been removed for now. Sharing a pack raises
+questions a button cannot settle alone, such as what happens to a mod pulled
+from the ModDB, or to a game version that disappeared. Those deserve real
+answers first, so the machinery stays in the code and the screens will come
+back. In the meantime, duplicating an instance covers the local cases.
