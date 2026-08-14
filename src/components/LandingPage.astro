@@ -45,6 +45,18 @@ const gallery = await Promise.all(
 		lightSrc: await screenshot(shot.src.replace(/\.png$/, '-light.png')),
 	})),
 );
+// Le carnet de prospection : la numérotation des relevés est continue d'un filon à
+// l'autre (01, 02, … comme un vrai carnet de terrain), calculée ici pour que les
+// chaînes n'aient jamais à la porter, donc jamais à se tromper. Chaque filon reçoit
+// sa plage (« 01-08 ») pour son bandeau, et le tampon final reçoit le vrai total.
+let noteNumber = 0;
+const pad = (value: number) => String(value).padStart(2, '0');
+const veins = t.notes.veins.map((vein) => {
+	const start = noteNumber + 1;
+	const entries = vein.entries.map((entry) => ({ ...entry, num: pad(++noteNumber) }));
+	return { ...vein, entries, start, range: `${pad(start)}-${pad(noteNumber)}` };
+});
+const noteTotal = noteNumber;
 const docs = `${base}${t.docsPrefix}`;
 const gettingStarted = `${docs}getting-started/`;
 const twin = `${base}${t.twinPath}`;
@@ -172,6 +184,53 @@ const alternateFr = `${alternateEn}fr/`;
 								</div>
 							))
 						}
+					</div>
+				</div>
+			</section>
+
+			<section class="pr-section pr-notes" id="notes" aria-labelledby="notes-title">
+				<div class="pr-shell">
+					<div class="pr-section__head">
+						<span class="pr-overline pr-section__eyebrow">{t.notes.eyebrow}</span>
+						<h2 class="pr-section__title" id="notes-title">{t.notes.title}</h2>
+						<p class="pr-section__lead">{t.notes.lead}</p>
+					</div>
+					<div class="pr-card pr-fieldlog">
+						{
+							veins.map((vein) => (
+								<details class="pr-vein" open>
+									<summary class="pr-vein__head">
+										<svg
+											class="pr-vein__chevron"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											aria-hidden="true"><path d="m9 6 6 6-6 6" /></svg
+										>
+										<h3 class="pr-vein__name">{vein.name}</h3>
+										<span class="pr-overline pr-vein__range">{vein.range}</span>
+									</summary>
+									<ol class="pr-vein__entries" start={vein.start}>
+										{vein.entries.map((entry) => (
+											<li class="pr-note">
+												<span class="pr-note__num pr-mono" aria-hidden="true">
+													{entry.num}
+												</span>
+												<p class="pr-note__body">
+													<strong class="pr-note__term">{entry.term}</strong> {entry.detail}
+												</p>
+											</li>
+										))}
+									</ol>
+								</details>
+							))
+						}
+						<p class="pr-overline pr-fieldlog__stamp">
+							{`${noteTotal} ${t.notes.tallyUnit} · ${veins.length} ${t.notes.veinUnit} · ${t.notes.stamp}`}
+						</p>
 					</div>
 				</div>
 			</section>
