@@ -1104,6 +1104,30 @@ body::after {
 	font-size: 0.8125rem;
 }
 
+/* Sous 30rem, la somme marque + trois libellés + interrupteur dépasse la fenêtre
+   (mesuré à 375 px : la barre défilait horizontalement). Le libellé GitHub se replie
+   en icône seule : le lien garde son nom accessible par aria-label, et c'est le seul
+   des trois dont l'icône se suffit. Les gouttières se resserrent d'un cran. */
+@media (max-width: 30rem) {
+	.pr-topbar__inner {
+		gap: var(--space-3);
+	}
+	.pr-topbar__brand {
+		gap: var(--space-3);
+		font-size: 0.9375rem;
+	}
+	.pr-topbar__nav {
+		gap: var(--space-3);
+		font-size: 0.8125rem;
+	}
+	.pr-topbar__github-label {
+		display: none;
+	}
+	.pr-topbar__lang {
+		padding-left: var(--space-3);
+	}
+}
+
 /* ────────────────────────────────────────────────────────────────────────
    7. Variante claire de la couche de caractère.
    La landing porte désormais data-theme (choix Starlight, repli système) :

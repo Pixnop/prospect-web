@@ -96,9 +96,9 @@ const alternateFr = `${alternateEn}fr/`;
 				</a>
 				<nav class="pr-topbar__nav" aria-label={t.lang === 'fr' ? 'Navigation principale' : 'Main navigation'}>
 					<a href={gettingStarted}>{t.nav.docs}</a>
-					<a href="https://github.com/Pixnop/Prospect">
+					<a href="https://github.com/Pixnop/Prospect" aria-label={t.nav.github}>
 						<Icon name="externalLink" size={15} />
-						{t.nav.github}
+						<span class="pr-topbar__github-label">{t.nav.github}</span>
 					</a>
 					<a class="pr-topbar__lang" href={twin} rel="alternate" lang={t.lang === 'fr' ? 'en' : 'fr'}>
 						{t.twinLabel}
