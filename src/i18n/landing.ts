@@ -176,7 +176,7 @@ export const en: LandingStrings = {
 					},
 					{
 						term: 'A guard for the Windows installer.',
-						detail: 'Prospect installs into its own folder and warns you: answer no if the game’s installer offers to uninstall another version.',
+						detail: 'The game’s own setup sometimes shows an uninstall prompt that nothing can suppress. Prospect installs into its own folder, checks the game truly landed there, and tells you what to answer.',
 					},
 					{
 						term: 'Uninstalling that names names.',
@@ -533,7 +533,7 @@ export const fr: LandingStrings = {
 					},
 					{
 						term: 'Le garde-fou de l’installeur Windows.',
-						detail: 'Prospect installe dans son propre dossier et te prévient : réponds non si l’installeur du jeu propose de désinstaller une autre version.',
+						detail: 'L’installeur du jeu affiche parfois sa propre fenêtre de désinstallation, que rien ne peut supprimer. Prospect installe dans son dossier, vérifie que le jeu y est vraiment, et te dit quoi répondre.',
 					},
 					{
 						term: 'Une désinstallation qui nomme.',
