@@ -51,10 +51,12 @@ Launcher, qui ne proposait qu'installer, mettre à jour ou supprimer.
 
 L'onglet Mods d'une instance relit le [journal de lancement](../logs/). Un mod qui a échoué
 porte une pastille (« 3 erreurs au dernier lancement ») avec les lignes en cause
-dans son infobulle, et un mod dont l'intégration avec un autre a fonctionné dit
-« fonctionne avec X ». Et quand un mod cherche le contenu d'un autre qui n'est
-pas installé, sans l'avoir déclaré en dépendance, la pastille « attend du
-contenu de Y » le dit : un signal pour toi, jamais un blocage. Un mod sain
-n'affiche rien, et c'est le cas ordinaire.
+dans son infobulle. Deux autres pastilles n'attendent rien du tout : Prospect lit
+ce que les archives annoncent elles-mêmes, donc elles sont là dès l'installation.
+Un mod dont l'intégration avec un autre mod installé a fonctionné dit
+« fonctionne avec X », et un mod qui cherche le contenu d'un autre qui n'est pas
+installé, sans l'avoir déclaré en dépendance, dit « attend du contenu de Y » :
+un signal pour toi, jamais un blocage. Un mod sain n'affiche rien, et c'est le
+cas ordinaire.
 Vérifier les mises à jour rend son verdict avec la même netteté, y compris quand
 tout est à jour.
