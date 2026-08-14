@@ -873,6 +873,104 @@ body::after {
 	line-height: 1.6;
 }
 
+/* Carnet de prospection : l'inventaire exhaustif tient dans UNE vitre d'item,
+   la carotte du site. Chaque filon est un <details> ouvert par défaut (repliable
+   au doigt sur mobile, sans un octet de JS), son bandeau sur bande de rangée
+   impaire, ses relevés sur le verre nu de la vitre ; le tampon du total ferme le
+   carnet sur une bande paire. Les contrastes de ces surfaces sont mesurés dans
+   scripts/measure-contrast.mjs (composite vitres + voile sur les pixels réels
+   du fond, moyenne et pire pixel). */
+.pr-vein__head {
+	display: flex;
+	align-items: center;
+	gap: var(--space-5);
+	padding: var(--space-6) var(--card-pad);
+	background: var(--glass-row-odd);
+	cursor: pointer;
+	list-style: none;
+	transition: background var(--dur-fast) var(--ease-standard);
+}
+.pr-vein__head::-webkit-details-marker {
+	display: none;
+}
+/* Au survol, le lavis cuivré se pose PAR-DESSUS la bande (calque d'image sur la
+   couleur de fond), il ne la remplace pas : remplacer la bande claire par le
+   seul lavis laissait text-2 à 4.10:1 au pire pixel en thème clair (mesuré). */
+.pr-vein__head:hover {
+	background-image: linear-gradient(var(--bg-selected), var(--bg-selected));
+}
+/* Le chevron dit l'état du filon : couché fermé, debout ouvert. Bascule sans
+   transition : la géométrie change d'état, elle ne s'anime pas. */
+.pr-vein__chevron {
+	width: 14px;
+	height: 14px;
+	flex-shrink: 0;
+	color: var(--text-2);
+}
+details[open] > .pr-vein__head .pr-vein__chevron {
+	transform: rotate(90deg);
+}
+.pr-vein__name {
+	margin: 0;
+	font-family: var(--font-display);
+	font-size: 1rem;
+	font-weight: var(--fw-semibold);
+	letter-spacing: 0.01em;
+	color: var(--text-1);
+}
+.pr-vein__range {
+	margin-left: auto;
+}
+.pr-vein__entries {
+	margin: 0;
+	padding: var(--space-6) var(--card-pad) var(--space-8);
+	list-style: none;
+	display: grid;
+	/* min(24rem, 100%) : deux colonnes dès que la place existe, une seule sinon,
+	   sans jamais forcer une piste plus large que le conteneur (à 375, 24rem
+	   déborderait). */
+	grid-template-columns: repeat(auto-fill, minmax(min(24rem, 100%), 1fr));
+	column-gap: var(--space-10);
+	row-gap: var(--space-3);
+}
+.pr-note {
+	display: grid;
+	grid-template-columns: 1.5rem 1fr;
+	column-gap: var(--space-5);
+	align-items: baseline;
+	padding: var(--space-3) var(--space-4);
+	border-radius: var(--radius-xs);
+	transition: background var(--dur-instant) var(--ease-standard);
+}
+/* Même règle que le bandeau : le lavis de survol vient AVEC une bande impaire
+   sous lui, jamais seul sur la vitre (en clair, le lavis nu descendait text-2 à
+   4.41:1 au pire pixel ; la bande le remonte, mesuré dans le même script). */
+.pr-note:hover {
+	background-image: linear-gradient(var(--bg-hover), var(--bg-hover)),
+		linear-gradient(var(--glass-row-odd), var(--glass-row-odd));
+}
+.pr-note__num {
+	font-size: 0.8125rem;
+	color: var(--accent-text);
+}
+.pr-note__body {
+	margin: 0;
+	font-size: 0.875rem;
+	line-height: 1.55;
+	color: var(--text-2);
+}
+.pr-note__term {
+	font-weight: var(--fw-semibold);
+	color: var(--text-1);
+}
+.pr-fieldlog__stamp {
+	margin: 0;
+	padding: var(--space-6) var(--card-pad);
+	border-top: 1px solid var(--glass-edge);
+	background: var(--glass-row-even);
+	text-align: center;
+}
+
 /* Galerie */
 .pr-gallery {
 	display: grid;
@@ -974,6 +1072,22 @@ body::after {
 	.pr-topbar__nav {
 		gap: var(--space-6);
 	}
+	/* Le carnet en fenêtre étroite : une colonne (voir min(24rem, 100%)), des
+	   gouttières resserrées d'un cran, et le numéro qui se rapproche de sa
+	   ligne. Les filons restent repliables : c'est ici que ça sert. */
+	.pr-vein__head {
+		padding-inline: var(--space-6);
+	}
+	.pr-vein__entries {
+		padding-inline: var(--space-4);
+		row-gap: var(--space-2);
+	}
+	.pr-note {
+		column-gap: var(--space-4);
+	}
+	.pr-fieldlog__stamp {
+		padding-inline: var(--space-6);
+	}
 }
 
 /* Fenêtre étroite : le verre ne doit coûter ni lisibilité ni fluidité. Le
@@ -1070,6 +1184,45 @@ body::after {
 }
 .pr-feature:hover .pr-feature__index {
 	color: var(--copper-400);
+}
+
+/* Les filons du carnet : chaque couche s'ouvre sur une strate pigmentée, écho
+   direct de la bande du hero (mêmes pigments, mêmes épaisseurs inégales), et la
+   séquence descend du cuivre vers la pierre comme une coupe géologique. Les
+   filons pairs portent en plus la teinte de rangée paire : en sombre elle
+   assombrit, en clair elle éclaircit, dans les deux cas le texte y gagne. Tout
+   est statique : aucune animation, la profondeur est une affaire de pigments. */
+.pr-vein {
+	border-top: 3px solid var(--copper-700);
+}
+.pr-vein:nth-of-type(even) {
+	background: var(--glass-row-even);
+}
+.pr-vein:nth-of-type(2) {
+	border-top-width: 5px;
+	border-top-color: var(--copper-900);
+}
+.pr-vein:nth-of-type(3) {
+	border-top-width: 2px;
+	border-top-color: var(--clay-700);
+}
+.pr-vein:nth-of-type(4) {
+	border-top-width: 4px;
+	border-top-color: var(--stone-700);
+}
+.pr-vein:nth-of-type(5) {
+	border-top-width: 6px;
+	border-top-color: var(--stone-850);
+}
+.pr-vein:nth-of-type(6) {
+	border-top-width: 3px;
+	border-top-color: var(--stone-600);
+}
+
+/* Le nom du filon s'allume au survol de son bandeau, comme les légendes de la
+   galerie : la lumière travaille, le reste ne bouge pas. */
+.pr-vein__head:hover .pr-vein__name {
+	color: var(--copper-300);
 }
 
 /* Cartes vivantes : le liseré s'éclaircit et l'ombre TOMBE au survol (la
@@ -1170,6 +1323,45 @@ body::after {
 }
 :root[data-theme='light'] .pr-strata i:nth-child(5) {
 	background: var(--stone-200);
+}
+
+/* Filons du carnet en clair : mêmes couches que les strates claires du hero,
+   pigments éclaircis pour tenir sur le parchemin. Deux remèdes locaux, mesurés
+   par scripts/measure-contrast.mjs : la vitre d'item claire (48 %) laissait
+   text-2 à 4.16:1 au pire pixel sous le plancher AA de 4.5:1, donc les filons
+   impairs reçoivent la bande impaire (5.13:1) et les pairs gardent la paire
+   (4.73:1), l'alternance blanc/lin survit ; et copper-700 mesurait de 3.65:1 à
+   4.50:1 sur ces vitres, donc numéros et allumages passent à copper-800
+   (6.55:1 au pire). */
+:root[data-theme='light'] .pr-vein {
+	border-top-color: var(--copper-300);
+	background: var(--glass-row-odd);
+}
+/* Redit la bande paire en clair : la règle du filon clair ci-dessus est plus
+   spécifique que l'alternance générique de la section 6, elle l'écraserait. */
+:root[data-theme='light'] .pr-vein:nth-of-type(even) {
+	background: var(--glass-row-even);
+}
+:root[data-theme='light'] .pr-note__num {
+	color: var(--copper-800);
+}
+:root[data-theme='light'] .pr-vein:nth-of-type(2) {
+	border-top-color: var(--copper-500);
+}
+:root[data-theme='light'] .pr-vein:nth-of-type(3) {
+	border-top-color: var(--clay-400);
+}
+:root[data-theme='light'] .pr-vein:nth-of-type(4) {
+	border-top-color: var(--stone-300);
+}
+:root[data-theme='light'] .pr-vein:nth-of-type(5) {
+	border-top-color: var(--stone-200);
+}
+:root[data-theme='light'] .pr-vein:nth-of-type(6) {
+	border-top-color: var(--stone-400);
+}
+:root[data-theme='light'] .pr-vein__head:hover .pr-vein__name {
+	color: var(--copper-800);
 }
 
 /* Numéros de relevé : l'allumage au survol passe au cuivre foncé, lisible sur
