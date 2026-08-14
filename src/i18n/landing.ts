@@ -100,7 +100,7 @@ export const en: LandingStrings = {
 	gallery: {
 		eyebrow: 'On screen',
 		title: 'The interface',
-		lead: 'Five screens from today’s builds, in both themes. The glass is mined from the same vein as the game (copper, stone, linen) and sits on a backdrop you pick from eleven in-game captures. The interface speaks English and French; each page of this site shows its own.',
+		lead: 'Eight screens from today’s builds, in both themes. The ModDB screens show the real catalog, not a mock-up. The glass is mined from the same vein as the game (copper, stone, linen) and sits on a backdrop you pick from eleven in-game captures. The interface speaks English and French; each page of this site shows its own.',
 		zoom: 'View full size:',
 		close: 'Close',
 		items: [
@@ -112,12 +112,17 @@ export const en: LandingStrings = {
 			{
 				src: 'instance-mods.png',
 				caption: 'An instance, Mods tab',
-				alt: 'Instance page on its Mods tab: enable toggles and update checks, next to the Worlds, Log and Options tabs',
+				alt: 'Instance page on its Mods tab: enable toggles and last-launch verdict badges, next to the Worlds, Log and Options tabs',
 			},
 			{
 				src: 'navigateur-moddb.png',
 				caption: 'The mod browser (ModDB)',
 				alt: 'Mod browser: the official ModDB in a fluid card grid, one-line summaries and per-instance compatibility badges',
+			},
+			{
+				src: 'fiche-mod.png',
+				caption: 'A mod’s page (Carry On)',
+				alt: 'Carry On’s ModDB page inside Prospect: the author’s description with its headings and images, the one-line summary at the top',
 			},
 			{
 				src: 'versions.png',
@@ -128,6 +133,16 @@ export const en: LandingStrings = {
 				src: 'wizard-instance.png',
 				caption: 'The new instance wizard',
 				alt: 'New instance wizard: naming the instance, first step of four',
+			},
+			{
+				src: 'docteur.png',
+				caption: 'The instance checkup',
+				alt: 'Instance checkup dialog: each finding named with its own fix, here a game version to install and a missing mod dependency',
+			},
+			{
+				src: 'reglages-fonds.png',
+				caption: 'Settings: pick your backdrop',
+				alt: 'General settings: the grid of eleven in-game backdrops, the selected one highlighted',
 			},
 		],
 	},
@@ -198,7 +213,7 @@ export const fr: LandingStrings = {
 	gallery: {
 		eyebrow: 'En images',
 		title: 'L’interface',
-		lead: 'Cinq écrans des builds du jour, dans les deux thèmes. Le verre sort du même filon que le jeu (cuivre, pierre, lin) et repose sur un fond d’écran à choisir parmi onze captures du jeu. L’interface parle français et anglais ; chaque page de ce site montre la sienne.',
+		lead: 'Huit écrans des builds du jour, dans les deux thèmes. Les écrans ModDB montrent le vrai catalogue, pas une maquette. Le verre sort du même filon que le jeu (cuivre, pierre, lin) et repose sur un fond d’écran à choisir parmi onze captures du jeu. L’interface parle français et anglais ; chaque page de ce site montre la sienne.',
 		zoom: 'Voir en grand :',
 		close: 'Fermer',
 		items: [
@@ -210,12 +225,17 @@ export const fr: LandingStrings = {
 			{
 				src: 'instance-mods.png',
 				caption: 'Une instance, onglet Mods',
-				alt: 'Page d’instance, onglet Mods : interrupteurs d’activation et vérification des mises à jour, à côté des onglets Mondes, Journal et Options',
+				alt: 'Page d’instance, onglet Mods : interrupteurs d’activation et pastilles de verdict du dernier lancement, à côté des onglets Mondes, Journal et Options',
 			},
 			{
 				src: 'navigateur-moddb.png',
 				caption: 'Le navigateur de mods (ModDB)',
 				alt: 'Navigateur de mods : le ModDB officiel en grille fluide, résumés d’une ligne et badges de compatibilité par instance',
+			},
+			{
+				src: 'fiche-mod.png',
+				caption: 'La fiche d’un mod (Carry On)',
+				alt: 'Fiche ModDB de Carry On dans Prospect : la description de l’auteur avec ses titres et ses images, le résumé d’une ligne en tête',
 			},
 			{
 				src: 'versions.png',
@@ -226,6 +246,16 @@ export const fr: LandingStrings = {
 				src: 'wizard-instance.png',
 				caption: 'L’assistant de création',
 				alt: 'Assistant de création d’instance : saisie du nom, première étape sur quatre',
+			},
+			{
+				src: 'docteur.png',
+				caption: 'Le diagnostic d’instance',
+				alt: 'Dialogue de diagnostic : chaque constat nommé avec son geste de réparation, ici une version du jeu à installer et une dépendance de mod manquante',
+			},
+			{
+				src: 'reglages-fonds.png',
+				caption: 'Réglages : le choix du fond',
+				alt: 'Réglages Général : la grille des onze fonds tirés du jeu, la vignette choisie mise en avant',
 			},
 		],
 	},

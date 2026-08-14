@@ -44,13 +44,14 @@ come from today's builds.
 
 The interface speaks English and French. The first start follows your system
 language; Settings changes it, and the choice applies the next time Prospect
-starts.
+starts. The theme and the window backdrop live in the same place and apply
+immediately: see [Customize Prospect](../customize/).
 
 If you come from VS Launcher, Prospect offers to import your installs at first
 start: a copy, your original folders untouched. The details are in
 [Migrate from VS Launcher](../migrate-from-vs-launcher/).
 
 To follow progress or report an issue, head to the
-[GitHub repository](https://github.com/Pixnop/Prospect). For a report, the Logs
-page (in the sidebar) shows what Prospect did during the session and exports it
-to a file: attach that file, it settles most questions.
+[GitHub repository](https://github.com/Pixnop/Prospect). For a report, the
+[Logs page](../logs/) (in the sidebar) shows what Prospect did during the
+session and exports it to a file: attach that file, it settles most questions.

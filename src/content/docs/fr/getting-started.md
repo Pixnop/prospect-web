@@ -46,14 +46,16 @@ Les captures d'écran de cette documentation viennent des builds du jour.
 
 L'interface parle français et anglais. Le premier démarrage suit la langue de
 ton système ; les Réglages permettent d'en changer, et le choix s'applique au
-prochain démarrage de Prospect.
+prochain démarrage de Prospect. Le thème et le fond de fenêtre vivent au même
+endroit et s'appliquent tout de suite : voir
+[Personnaliser Prospect](../customize/).
 
 Si tu viens de VS Launcher, Prospect propose d'importer tes installations dès le
 premier démarrage : une copie, tes dossiers d'origine intacts. Les détails sont
 dans [Migrer depuis VS Launcher](../migrate-from-vs-launcher/).
 
 Pour suivre l'avancement ou signaler un problème, direction le
-[dépôt GitHub](https://github.com/Pixnop/Prospect). Pour un signalement, la page
-Journaux (dans la barre latérale) montre ce que Prospect a fait pendant la
-session et l'exporte dans un fichier : joins ce fichier, il tranche la plupart
-des questions.
+[dépôt GitHub](https://github.com/Pixnop/Prospect). Pour un signalement, la
+[page Journaux](../logs/) (dans la barre latérale) montre ce que Prospect a
+fait pendant la session et l'exporte dans un fichier : joins ce fichier, il
+tranche la plupart des questions.

@@ -33,12 +33,14 @@ Everything lives under one root folder, at the standard location for your OS:
 - Windows: `%APPDATA%\Prospect\`
 - macOS: `~/Library/Application Support/Prospect/`
 
-Instances live in `instances/`, installed game versions in `versions/`.
+Instances live in `instances/`, installed game versions in `versions/`, and
+the application and launch logs in `logs/` (see [Logs](../logs/)).
 
 ## Which languages does Prospect speak?
 
 English and French. The first start follows your system language; Settings
-changes it, and the choice applies the next time Prospect starts.
+changes it, and the choice applies the next time Prospect starts. The other
+appearance settings are covered in [Customize Prospect](../customize/).
 
 ## What is an rc version?
 
