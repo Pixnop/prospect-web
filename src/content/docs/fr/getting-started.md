@@ -8,7 +8,7 @@ disponible : tu peux la télécharger, ou compiler toi-même.
 
 ## Télécharger la pré-release
 
-La [page des releases](https://github.com/Pixnop/Prospect/releases/latest) fournit
+La [page de téléchargement GitHub](https://github.com/Pixnop/Prospect/releases/latest) fournit
 une archive Linux (`prospect-<version>-linux-x64.tar.gz`, binaire `Prospect` prêt à
 lancer après extraction) et une archive Windows (`prospect-<version>-win-x64.zip`,
 `Prospect.exe`), avec les sommes SHA-256 à côté.
@@ -39,10 +39,21 @@ desktop.
 
 ## À quoi s'attendre
 
-Le projet avance mais reste en développement précoce : pas de version empaquetée,
-pas d'installeur, pas de mise à jour automatique. Les captures d'écran de cette
-documentation viennent de builds de travail : c'est la meilleure idée honnête de ce
-à quoi ressemble Prospect aujourd'hui, tant qu'il n'y a rien à télécharger.
+Un launcher qui marche, tôt dans sa vie. La pré-release n'installe rien sur le
+système : tu extrais l'archive, tu lances le binaire, et un build plus récent la
+remplace depuis la même page, faute de mise à jour automatique pour l'instant.
+Les captures d'écran de cette documentation viennent des builds du jour.
+
+L'interface parle français et anglais. Le premier démarrage suit la langue de
+ton système ; les Réglages permettent d'en changer, et le choix s'applique au
+prochain démarrage de Prospect.
+
+Si tu viens de VS Launcher, Prospect propose d'importer tes installations dès le
+premier démarrage : une copie, tes dossiers d'origine intacts. Les détails sont
+dans [Migrer depuis VS Launcher](../migrate-from-vs-launcher/).
 
 Pour suivre l'avancement ou signaler un problème, direction le
-[dépôt GitHub](https://github.com/Pixnop/Prospect).
+[dépôt GitHub](https://github.com/Pixnop/Prospect). Pour un signalement, la page
+Journaux (dans la barre latérale) montre ce que Prospect a fait pendant la
+session et l'exporte dans un fichier : joins ce fichier, il tranche la plupart
+des questions.

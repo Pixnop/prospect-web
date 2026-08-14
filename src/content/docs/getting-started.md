@@ -37,10 +37,20 @@ Three commands: clone the repository, then build and launch the desktop app.
 
 ## What to expect
 
-The project is moving, but it is early: no packaged release, no installer, no
-auto-update. The screenshots in this documentation come from working builds, and
-that is the most honest picture of what Prospect looks like today, while there is
-nothing to download.
+You get a working launcher, early. The pre-release installs nothing system-wide:
+extract the archive, run the binary, and a newer build replaces it from the same
+page, since there is no auto-update yet. The screenshots in this documentation
+come from today's builds.
+
+The interface speaks English and French. The first start follows your system
+language; Settings changes it, and the choice applies the next time Prospect
+starts.
+
+If you come from VS Launcher, Prospect offers to import your installs at first
+start: a copy, your original folders untouched. The details are in
+[Migrate from VS Launcher](../migrate-from-vs-launcher/).
 
 To follow progress or report an issue, head to the
-[GitHub repository](https://github.com/Pixnop/Prospect).
+[GitHub repository](https://github.com/Pixnop/Prospect). For a report, the Logs
+page (in the sidebar) shows what Prospect did during the session and exports it
+to a file: attach that file, it settles most questions.

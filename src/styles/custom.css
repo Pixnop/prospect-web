@@ -31,6 +31,10 @@
 	--stone-600: #443d36;
 	--stone-500: #5b5249;
 	--stone-400: #7e756b;
+	/* Demi-marche 400→300 : la rampe n'avait plus de résolution au milieu, et le
+	   texte tertiaire mesuré sur les vitres tombait sous le plancher AA (voir
+	   --text-3). Même remède que le launcher : deux entrées de demi-marche. */
+	--stone-350: #988f84;
 	--stone-300: #b3a99e;
 	--stone-200: #d5ccc2;
 	--stone-100: #ede6dd;
@@ -89,7 +93,11 @@
 
 	--text-1: var(--stone-100);
 	--text-2: var(--stone-300);
-	--text-3: var(--stone-400);
+	/* stone-400 mesurait 4.13:1 sur la feuille de lecture et 3.82:1 sur le chrome
+	   (composite des vitres sur les pixels réels du fond, moyenne de l'image) pour
+	   un plancher AA à 4.5:1 en petit texte : une demi-marche, comme le launcher
+	   pour son Text3. stone-350 mesure 5.9:1 sur la feuille, 5.4:1 sur le chrome. */
+	--text-3: var(--stone-350);
 	--text-4: var(--stone-500);
 	--text-on-accent: #1a1512;
 	--text-link: var(--copper-300);
@@ -239,7 +247,10 @@
 
 	--text-1: #231e1a;
 	--text-2: #5b5249;
-	--text-3: #7e756b;
+	/* Demi-marche vers le sombre : #7e756b mesurait 3.82:1 sur la feuille claire
+	   et 3.60:1 sur la vitre menu (plancher AA 4.5:1) ; #6c635a mesure 4.96:1 et
+	   4.67:1. Pendant clair de la demi-marche stone-350 du thème sombre. */
+	--text-3: #6c635a;
 	--text-4: #a2988d;
 	--text-on-accent: #fff8f1;
 	--text-link: var(--copper-700);
@@ -316,7 +327,9 @@
 	--sl-color-white: var(--stone-100);
 	--sl-color-gray-1: var(--stone-200);
 	--sl-color-gray-2: var(--stone-300);
-	--sl-color-gray-3: var(--stone-400);
+	/* gray-3 porte du texte (liens du sommaire, méta de pied de page) : il suit la
+	   demi-marche de --text-3, mesurée contre le plancher AA sur la feuille. */
+	--sl-color-gray-3: var(--stone-350);
 	--sl-color-gray-4: var(--stone-500);
 	--sl-color-gray-5: var(--stone-700);
 	--sl-color-gray-6: var(--stone-850);
@@ -328,6 +341,11 @@
 
 	--sl-color-text: var(--stone-300);
 	--sl-color-text-accent: var(--copper-300);
+	/* Texte posé sur l'accent (pastille de page courante de la sidebar) : le
+	   Starlight par défaut composait un brun sur cuivre à 2.55:1 en clair. Le
+	   token de l'app dit déjà la bonne encre dans les deux thèmes (9.6:1 sombre,
+	   6.4:1 clair, mesurés sur copper-300 et copper-700). */
+	--sl-color-text-invert: var(--text-on-accent);
 	--sl-color-bg: var(--bg-window);
 	--sl-color-bg-nav: var(--bg-sidebar);
 	--sl-color-bg-sidebar: var(--bg-sidebar);
@@ -363,9 +381,14 @@
 
 :root[data-theme='light'],
 [data-theme='light'] ::backdrop {
+	/* En clair, « white » est l'encre la plus forte chez Starlight. Sans cette
+	   ligne, la valeur sombre (hors couche, donc plus forte que le thème clair
+	   posé en couche par Starlight) restait : titres et libellés de la sidebar
+	   composaient du crème sur crème, mesuré à 1.04:1. */
+	--sl-color-white: #231e1a;
 	--sl-color-gray-1: #5b5249;
 	--sl-color-gray-2: #5b5249;
-	--sl-color-gray-3: #7e756b;
+	--sl-color-gray-3: #6c635a;
 	--sl-color-gray-4: #a2988d;
 	--sl-color-gray-5: #cbc0b2;
 	--sl-color-gray-6: #f7f2eb;
@@ -594,7 +617,11 @@ body::after {
 	font-weight: var(--fw-medium);
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	color: var(--text-3);
+	/* text-2, pas text-3 : ces surlignes de 11 px vivent sur les vitres fines
+	   (voile nu du hero, chrome, vitre menu de la lightbox), où text-3 mesurait
+	   de 1.7:1 (clair sur voile) à 4.1:1 pour un plancher AA à 4.5:1. Même
+	   précédent que la légende de galerie plus bas. */
+	color: var(--text-2);
 }
 
 .pr-mono {
@@ -687,6 +714,10 @@ body::after {
 	display: inline-flex;
 	align-items: center;
 	gap: var(--space-3);
+	/* Protection de l'app pour le texte des chromes : la vitre à 30 % (44 % en
+	   clair) ne garantit pas seule le plancher (text-2 y mesurait 4.3:1 en clair,
+	   3.7:1 au pire pixel) ; le halo lin porte le fond local du glyphe au-dessus. */
+	text-shadow: var(--glass-text-shadow);
 }
 .pr-topbar__nav a:hover {
 	color: var(--text-1);
@@ -913,16 +944,21 @@ body::after {
 	justify-content: space-between;
 	gap: var(--space-6);
 }
+/* Pied de page : même chrome que la barre du haut, mêmes remèdes mesurés :
+   text-2 (text-3 mesurait 3.8:1 en sombre, 2.6:1 en clair sur cette vitre) et
+   le halo de protection de l'app. */
 .pr-footer p {
 	margin: 0;
-	color: var(--text-3);
+	color: var(--text-2);
 	font-size: 0.875rem;
+	text-shadow: var(--glass-text-shadow);
 }
 .pr-footer a {
-	color: var(--text-3);
+	color: var(--text-2);
+	text-shadow: var(--glass-text-shadow);
 }
 .pr-footer a:hover {
-	color: var(--text-2);
+	color: var(--text-1);
 }
 .pr-footer__links {
 	display: flex;
@@ -1226,7 +1262,8 @@ body::after {
 .pr-lightbox__caption {
 	margin: var(--space-5) 0 0;
 	text-align: center;
-	color: var(--text-3);
+	/* Hérite du text-2 de .pr-overline : sur la vitre menu, text-3 mesurait
+	   4.1:1 en sombre et 3.6:1 en clair. La règle est ici pour la marge. */
 }
 .pr-lightbox__close {
 	position: absolute;

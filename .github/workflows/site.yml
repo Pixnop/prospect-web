@@ -39,6 +39,11 @@ jobs:
       - name: Build du site
         run: pnpm build
 
+      # Chaque chemin interne du build doit mener quelque part : liens, ancres,
+      # redirections, jumelles de langue, et aucune ressource externe.
+      - name: Vérification des liens du build
+        run: pnpm check:links
+
       # Les trois étapes suivantes ne servent qu'au déploiement : inutile de
       # configurer ou d'empaqueter quoi que ce soit sur une simple pull request.
       - name: Configuration de GitHub Pages
